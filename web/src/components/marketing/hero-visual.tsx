@@ -20,14 +20,17 @@ export function HeroVisual() {
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
-      setPhase("alert");
-      setStill(14);
-      return;
-    }
     const schedule = (fn: () => void, ms: number) => {
       timers.current.push(window.setTimeout(fn, ms));
     };
+    if (reduce) {
+      schedule(() => {
+        setPhase("alert");
+        setStill(14);
+      }, 0);
+      const t0 = timers.current;
+      return () => t0.forEach((id) => window.clearTimeout(id));
+    }
     const cycle = () => {
       setStill(0);
       setPhase("reset");
@@ -37,7 +40,7 @@ export function HeroVisual() {
       schedule(() => setPhase("alert"), 6300);
       schedule(cycle, 12500);
     };
-    cycle();
+    schedule(cycle, 0);
     const t = timers.current;
     return () => t.forEach((id) => window.clearTimeout(id));
   }, []);

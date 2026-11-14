@@ -108,7 +108,8 @@ export function FacilityDataProvider({
   const [source] = useState<FacilityDataSource>(() => createFacilitySource());
   const [core, setCore] = useState<CoreState | null>(null);
   const coreRef = useRef<CoreState | null>(null);
-  const [settings, setSettings] = useState<FacilitySettings>(DEFAULT_SETTINGS);
+  // Provider only renders on the client (behind the mock-auth gate), so localStorage is available.
+  const [settings, setSettings] = useState<FacilitySettings>(() => loadSettings());
   const settingsRef = useRef(settings);
   const [evacuation, setEvacuationState] = useState<EvacuationState>({ active: false, cleared: {} });
   const [modelMetrics, setModelMetrics] = useState<ModelMetrics | null>(null);
@@ -124,13 +125,6 @@ export function FacilityDataProvider({
   const commit = useCallback((next: CoreState) => {
     coreRef.current = next;
     setCore(next);
-  }, []);
-
-  // Settings (persisted per browser).
-  useEffect(() => {
-    const s = loadSettings();
-    settingsRef.current = s;
-    setSettings(s);
   }, []);
 
   const updateSettings = useCallback((patch: Partial<FacilitySettings>) => {
@@ -303,7 +297,6 @@ export function FacilityDataProvider({
         setAutoFalls(on);
       },
     }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [patchAlert, source, updateSettings, commit]
   );
 

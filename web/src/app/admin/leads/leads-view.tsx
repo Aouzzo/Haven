@@ -22,7 +22,6 @@ export function LeadsView() {
   const [keyInput, setKeyInput] = useState("");
 
   const load = useCallback(async () => {
-    setState({ kind: "loading" });
     let key = "";
     try {
       key = sessionStorage.getItem(KEY_STORAGE) ?? "";
@@ -45,7 +44,8 @@ export function LeadsView() {
   }, []);
 
   useEffect(() => {
-    void load();
+    const id = window.setTimeout(() => void load(), 0);
+    return () => window.clearTimeout(id);
   }, [load]);
 
   return (
@@ -54,7 +54,14 @@ export function LeadsView() {
         title="Pilot leads"
         description="Requests from the website's pilot form. Real submissions, not sample data."
         actions={
-          <Button variant="outline" size="lg" onClick={load}>
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={() => {
+              setState({ kind: "loading" });
+              void load();
+            }}
+          >
             <RefreshCw /> Refresh
           </Button>
         }

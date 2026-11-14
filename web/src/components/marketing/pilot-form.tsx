@@ -11,6 +11,14 @@ import { cn } from "@/lib/utils";
 
 type State = "idle" | "submitting" | "success" | "error";
 
+function FieldError({ errors, name }: { errors: LeadErrors; name: keyof LeadErrors }) {
+  return errors[name] ? (
+    <p id={`lead-${name}-error`} className="text-sm font-medium text-destructive">
+      {errors[name]}
+    </p>
+  ) : null;
+}
+
 export function PilotForm() {
   const [state, setState] = useState<State>("idle");
   const [errors, setErrors] = useState<LeadErrors>({});
@@ -73,12 +81,6 @@ export function PilotForm() {
     "aria-describedby": errors[name] ? `lead-${name}-error` : undefined,
   });
 
-  const Err = ({ name }: { name: keyof LeadErrors }) =>
-    errors[name] ? (
-      <p id={`lead-${name}-error`} className="text-sm font-medium text-destructive">
-        {errors[name]}
-      </p>
-    ) : null;
 
   const inputCls = "h-12 rounded-xl bg-background px-4 text-base";
 
@@ -88,17 +90,17 @@ export function PilotForm() {
         <div className="space-y-2">
           <Label htmlFor="lead-name" className="text-[0.95rem]">Your name</Label>
           <Input {...field("name")} autoComplete="name" className={inputCls} />
-          <Err name="name" />
+          <FieldError errors={errors} name="name" />
         </div>
         <div className="space-y-2">
           <Label htmlFor="lead-email" className="text-[0.95rem]">Work email</Label>
           <Input {...field("email")} type="email" autoComplete="email" className={inputCls} />
-          <Err name="email" />
+          <FieldError errors={errors} name="email" />
         </div>
         <div className="space-y-2 sm:col-span-2">
           <Label htmlFor="lead-facility" className="text-[0.95rem]">Facility name</Label>
           <Input {...field("facility")} autoComplete="organization" className={inputCls} />
-          <Err name="facility" />
+          <FieldError errors={errors} name="facility" />
         </div>
         <div className="space-y-2">
           <Label htmlFor="lead-role" className="text-[0.95rem]">Your role</Label>
@@ -122,12 +124,12 @@ export function PilotForm() {
             </select>
             <ChevronDown className="pointer-events-none absolute top-1/2 right-3.5 size-5 -translate-y-1/2 text-muted-foreground" />
           </div>
-          <Err name="role" />
+          <FieldError errors={errors} name="role" />
         </div>
         <div className="space-y-2">
           <Label htmlFor="lead-rooms" className="text-[0.95rem]">Number of rooms</Label>
           <Input {...field("rooms")} type="number" inputMode="numeric" min={1} max={5000} className={inputCls} />
-          <Err name="rooms" />
+          <FieldError errors={errors} name="rooms" />
         </div>
         <div className="space-y-2 sm:col-span-2">
           <Label htmlFor="lead-message" className="text-[0.95rem]">
@@ -139,7 +141,7 @@ export function PilotForm() {
             className="rounded-xl bg-background px-4 py-3 text-base"
             placeholder="Anything we should know? Please don't include resident information."
           />
-          <Err name="message" />
+          <FieldError errors={errors} name="message" />
         </div>
         {/* Honeypot */}
         <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
