@@ -236,6 +236,7 @@ function Header({ session, mobileNav }: { session: Session; mobileNav: React.Rea
             variant="ghost"
             size="icon-lg"
             aria-label={settings.darkMode ? "Switch to light mode" : "Switch to dark mode"}
+            className="hidden sm:inline-flex"
             onClick={() => actions.updateSettings({ darkMode: !settings.darkMode })}
           >
             {settings.darkMode ? <Sun className="size-5" /> : <Moon className="size-5" />}

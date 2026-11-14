@@ -66,7 +66,7 @@ export function DashboardPreview() {
                 );
               })}
             </div>
-            <div className="mt-4 rounded-2xl border-2 border-red-500 bg-card p-4 sm:absolute sm:right-[-1.5rem] sm:bottom-[-2rem] sm:mt-0 sm:w-80 sm:shadow-2xl">
+            <div className="mt-4 rounded-2xl border-2 border-red-500 bg-card p-4 xl:absolute xl:right-[-1.5rem] xl:bottom-[-2rem] xl:mt-0 xl:w-80 xl:shadow-2xl">
               <p className="flex items-center gap-2 text-xs font-bold tracking-wide text-red-700 uppercase">
                 <Siren className="size-4" /> Possible fall detected
               </p>

@@ -129,13 +129,13 @@ function EvacTile({ roomId, label, row = false }: { roomId: string; label: strin
         <Icon className="size-6" />
         {row && <p className="text-base font-bold">{stateText}</p>}
       </div>
-      {!row && <p className="text-base font-extrabold uppercase">{stateText}</p>}
+      {!row && <p className="text-sm font-extrabold leading-tight uppercase">{stateText}</p>}
       <Button
         size="lg"
         onClick={() => actions.markCleared(roomId, !isCleared)}
         className={cn(
-          "h-11 font-bold",
-          !row && "mt-auto w-full",
+          "h-auto min-h-11 px-2 py-2 font-bold whitespace-normal",
+          !row && "mt-auto w-full text-sm leading-tight",
           isCleared ? "bg-white/20 text-white hover:bg-white/30" : "bg-white text-zinc-950 hover:bg-white/90"
         )}
       >
