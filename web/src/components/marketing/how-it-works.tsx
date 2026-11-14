@@ -25,9 +25,9 @@ function BarsArt() {
   const bars = [
     { l: "Walk", v: 0.08, c: "#059669" },
     { l: "Sit", v: 0.05, c: "#3b82f6" },
-    { l: "Lie", v: 0.12, c: "#1d4ed8" },
+    { l: "Lie", v: 0.12, c: "#7c3aed" },
     { l: "Fall", v: 0.72, c: "#dc2626" },
-    { l: "Empty", v: 0.03, c: "#94a3b8" },
+    { l: "Empty", v: 0.03, c: "#64748b" },
   ];
   return (
     <div className="flex h-28 items-end justify-center gap-3 px-2" aria-hidden="true">

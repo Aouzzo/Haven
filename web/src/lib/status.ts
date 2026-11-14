@@ -69,9 +69,9 @@ export const STATUS_META: Record<
 export const ACTIVITY_META: Record<Activity, { label: string; hex: string; status: RoomStatus }> = {
   walking: { label: "Walking", hex: "#059669", status: "moving" },
   sitting: { label: "Sitting", hex: "#3b82f6", status: "still" },
-  lying: { label: "Lying", hex: "#1d4ed8", status: "still" },
+  lying: { label: "Lying", hex: "#7c3aed", status: "still" },
   fall: { label: "Fall", hex: "#dc2626", status: "possible_fall" },
-  empty: { label: "Empty", hex: "#94a3b8", status: "empty" },
+  empty: { label: "Empty", hex: "#64748b", status: "empty" },
 };
 
 export const ACTIVITIES: Activity[] = ["walking", "sitting", "lying", "fall", "empty"];
