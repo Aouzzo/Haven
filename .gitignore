@@ -1,0 +1,12 @@
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Local Claude Code settings
+.claude/settings.local.json
+
+# Env files (never commit secrets)
+.env
+.env.*
+!.env.example
