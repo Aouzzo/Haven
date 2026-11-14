@@ -111,6 +111,13 @@ function ShellFrame({ session, requireRole, children }: { session: Session; requ
   );
 }
 
+/** Renders children only for the given role (mock auth). */
+export function RequireRole({ role, children }: { role: Role; children: React.ReactNode }) {
+  const session = useSession();
+  if (!session) return null;
+  return session.role === role ? <>{children}</> : <RoleGate role={role} />;
+}
+
 function RoleGate({ role }: { role: Role }) {
   return (
     <div className="mx-auto max-w-lg rounded-2xl border border-border bg-card p-8 text-center">
