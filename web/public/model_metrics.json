@@ -1,0 +1,30 @@
+{
+  "notice": "PLACEHOLDER: replace with real results",
+  "model_type": "PLACEHOLDER: e.g., 1D CNN over windows of WiFi CSI amplitude (team to fill in)",
+  "input": "PLACEHOLDER: e.g., 2-second windows of CSI subcarrier amplitudes from one ESP32 receiver",
+  "split_method": "Train/test split by recording take (not by random windows), so no take appears in both sets.",
+  "classes": ["walking", "sitting", "lying", "fall", "empty"],
+  "test_accuracy": 0.0,
+  "per_class_accuracy": {
+    "walking": 0.0,
+    "sitting": 0.0,
+    "lying": 0.0,
+    "fall": 0.0,
+    "empty": 0.0
+  },
+  "training_curve": [
+    { "epoch": 1, "train_accuracy": 0.0, "test_accuracy": 0.0 },
+    { "epoch": 2, "train_accuracy": 0.0, "test_accuracy": 0.0 },
+    { "epoch": 3, "train_accuracy": 0.0, "test_accuracy": 0.0 },
+    { "epoch": 4, "train_accuracy": 0.0, "test_accuracy": 0.0 },
+    { "epoch": 5, "train_accuracy": 0.0, "test_accuracy": 0.0 }
+  ],
+  "confusion_matrix": [
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0]
+  ],
+  "updated": "PLACEHOLDER"
+}

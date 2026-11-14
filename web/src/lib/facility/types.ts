@@ -137,6 +137,8 @@ export interface FacilityDataSource {
   demo?: {
     triggerFall(roomId?: string): void;
     reset(): void;
+    setAutoFalls?(on: boolean): void;
+    isAutoFalls?(): boolean;
   };
 }
 
