@@ -31,7 +31,7 @@ export function Logo({ href = "/", className }: { href?: string; className?: str
   return (
     <Link
       href={href}
-      className={cn("flex items-center gap-2.5 font-heading text-[1.05rem] font-bold tracking-tight", className)}
+      className={cn("flex shrink-0 items-center gap-2.5 whitespace-nowrap font-heading text-[1.05rem] font-bold tracking-tight", className)}
     >
       <LogoMark />
       <span>{site.name}</span>

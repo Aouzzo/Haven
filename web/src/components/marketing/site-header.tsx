@@ -37,20 +37,20 @@ export function SiteHeader() {
           : "border-b border-transparent bg-background/0"
       )}
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+      <div className="mx-auto flex h-16 max-w-6xl items-center gap-3 px-4 sm:px-6">
         <Logo />
-        <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
+        <nav aria-label="Main" className="mx-auto hidden items-center gap-0.5 xl:flex">
           {NAV.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-lg px-3 py-2 text-[0.95rem] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className="whitespace-nowrap rounded-lg px-3 py-2 text-[0.95rem] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               {item.label}
             </Link>
           ))}
         </nav>
-        <div className="hidden items-center gap-2 lg:flex">
+        <div className="ml-auto hidden items-center gap-2 md:flex xl:ml-0">
           <Button asChild variant="ghost" size="lg">
             <Link href="/login">Try the demo</Link>
           </Button>
@@ -60,7 +60,7 @@ export function SiteHeader() {
         </div>
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon-lg" className="lg:hidden" aria-label="Open menu">
+            <Button variant="ghost" size="icon-lg" className="ml-auto md:ml-0 xl:hidden" aria-label="Open menu">
               <Menu className="size-6" />
             </Button>
           </SheetTrigger>

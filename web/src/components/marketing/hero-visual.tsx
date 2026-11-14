@@ -137,20 +137,20 @@ export function HeroVisual() {
           {/* Disturbance ring where the figure fell */}
           {danger && (
             <circle
-              cx={120 + 168 + 22}
-              cy={226}
+              cx={120 + 168 + 34}
+              cy={176}
               r="34"
               fill="none"
               strokeWidth="2.5"
               className="animate-wave stroke-red-500"
-              style={{ transformOrigin: `${120 + 168 + 22}px 226px`, animationDuration: "1.8s" }}
+              style={{ transformOrigin: `${120 + 168 + 34}px 176px`, animationDuration: "1.8s" }}
             />
           )}
 
           {/* Figure (abstract) */}
           <g
             style={{
-              transform: `translate(${x}px, 0px)`,
+              transform: `translate(${x}px, -52px)`,
               transition: phase === "walk" ? "transform 3.6s linear" : "none",
             }}
           >
@@ -164,8 +164,27 @@ export function HeroVisual() {
                 opacity: phase === "reset" ? 0 : 1,
               }}
             >
-              <circle cx="120" cy="174" r="11" className={cn("transition-colors duration-500", danger ? "fill-red-600" : "fill-ink")} />
-              <rect x="110" y="189" width="20" height="44" rx="10" className={cn("transition-colors duration-500", danger ? "fill-red-600" : "fill-ink")} />
+              <g
+                strokeLinecap="round"
+                strokeWidth="8"
+                fill="none"
+                className={cn("transition-colors duration-500", danger ? "stroke-red-600" : "stroke-ink")}
+              >
+                <line x1="120" y1="186" x2="120" y2="212" />
+                <line x1="120" y1="192" x2="109" y2="207" />
+                <line x1="120" y1="192" x2="131" y2="207" />
+                <line
+                  x1="120" y1="212" x2="113" y2="238"
+                  className={cn(walking && "animate-stride")}
+                  style={{ transformOrigin: "120px 212px" }}
+                />
+                <line
+                  x1="120" y1="212" x2="127" y2="238"
+                  className={cn(walking && "animate-stride [animation-direction:alternate-reverse]")}
+                  style={{ transformOrigin: "120px 212px" }}
+                />
+              </g>
+              <circle cx="120" cy="171" r="10" className={cn("transition-colors duration-500", danger ? "fill-red-600" : "fill-ink")} />
             </g>
           </g>
         </svg>
