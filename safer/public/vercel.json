@@ -4,3 +4,4 @@
     { "source": "/login", "destination": "/index.html" }
   ]
 }
+
