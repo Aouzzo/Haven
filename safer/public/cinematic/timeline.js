@@ -36,7 +36,7 @@ export function mountTimeline() {
     ['02 / THOUGHTFULLY CONNECTED', 'A small presence.\nA thoughtful connection.', 'Compact sensing. Designed to feel at home.'],
     ['03 / ROOM TO LIVE', 'Life, as it should be.', 'No cameras. No wearables. Just room to be yourself.'],
     ['04 / A MOMENT NOTICED', 'When a moment matters.', 'A conceptual signal that someone may need help.'],
-    ['05 / HAVEN', 'A smarter way to make assisted living safer.', '']
+    ['05 / HAVEN', 'A smarter way to make assisted living safer.\nMake it a <em>Haven</em>.', '']
   ];
   let enabled = false, target = 0, current = 0, raf = 0, previousTime = 0, chapter = -1;
   const range = () => Math.max(1, scroll.offsetHeight - innerHeight);
@@ -96,7 +96,7 @@ export function mountTimeline() {
       cinema.dataset.chapter = chapter;
       const [kicker,title,detail] = descriptions[chapter];
       q('.caption-kicker').textContent = kicker;
-      q('.caption-title').innerText = title;
+      q('.caption-title').innerHTML = title.replace(/\n/g, '<br>');
       q('.caption-detail').textContent = detail;
       q('.scene-announcement').textContent = `Scene ${chapter+1} of 5: ${title.replace('\n', ' ')} ${detail} Conceptual simulation.`;
       chapters.forEach((button,i) => i === chapter ? button.setAttribute('aria-current','step') : button.removeAttribute('aria-current'));
