@@ -1,0 +1,20 @@
+import { header, shield, arrow, sensor } from '../components/brand.js';
+export const sceneAssets = ['/assets/scenes/exterior.png', '/assets/scenes/hallway-empty.png', '/assets/scenes/resident-sprites-clean.png'];
+export function home() {
+  return `${header(true)}<main id="main" class="cinema-scroll" aria-label="Safer cinematic concept demonstration"><section class="cinema" aria-label="Scroll to explore the Safer concept">
+    <div class="scene exterior" role="img" aria-label="A welcoming luxury mountain lodge assisted living community at golden hour"><img src="${sceneAssets[0]}" alt="" fetchpriority="high"></div>
+    <div class="scene interior" aria-hidden="true"><div class="scene-plane"><img class="hallway-image" src="${sceneAssets[1]}" alt="">
+      <div class="sensor-mount mount-left">${sensor()}<svg class="radio-waves" viewBox="-180 -180 360 360"><circle r="35"/><circle r="35"/><circle r="35"/></svg></div>
+      <div class="sensor-mount mount-right">${sensor()}<svg class="radio-waves" viewBox="-180 -180 360 360"><circle r="35"/><circle r="35"/><circle r="35"/></svg></div>
+      <div class="resident-wrap"><div class="resident-shadow"></div><div class="resident walking"></div><div class="resident seated"></div></div>
+    </div></div>
+    <div class="scene-shade"></div><div class="transition-veil" aria-hidden="true"></div>
+    <div class="scene-caption" aria-hidden="true"><span class="eyebrow caption-kicker">01 / A PLACE TO CALL HOME</span><p class="caption-title">A quieter kind of care.</p><span class="caption-detail">Thoughtfully designed. Reassuringly discreet.</span></div>
+    <div class="sensor-note" aria-hidden="true"><span class="live-dot"></span><span>Small presence.<br><strong>Thoughtful connection.</strong></span><i></i></div>
+    <div class="fall-alert" role="status" aria-live="polite"><div class="alert-symbol">!</div><div><span class="eyebrow">CONCEPTUAL ALERT</span><h2>Fall Detected.</h2><p>A moment noticed. A chance to help.</p></div><span class="alert-corner">↗</span></div>
+    <section class="brand-reveal" aria-label="Safer brand reveal" aria-hidden="true" inert><div class="reveal-orbit orbit-one"></div><div class="reveal-orbit orbit-two"></div><div class="reveal-content"><div class="metal-mark">${shield()}</div><span class="eyebrow reveal-eyebrow">PEACE OF MIND, BY DESIGN</span><h1>Safer<span>.</span></h1><h2>A smarter way to make<br>assisted living safer.</h2><p>A proposed Wi-Fi sensing system that notices changes in movement.<br class="desktop-break"> No cameras. No wearables. More room to live.</p><div class="reveal-actions"><a class="button primary" href="/technology">Explore the Technology ${arrow}</a><a class="button secondary" href="/login">Log In ${arrow}</a></div><span class="reveal-footnote">A concept in development. Built around people.</span></div><button class="replay-button" type="button">↶ &nbsp; Experience again</button><span class="prototype-note">Prototype. Not a medical device.</span></section>
+    <div class="cinema-bottom"><div class="scroll-instruction"><span class="scroll-line"></span><span>SCROLL TO EXPLORE</span></div><nav class="chapter-nav" aria-label="Cinematic chapters"><button data-progress="0" aria-label="Scene 1: Community" aria-current="step"><i></i><span>Community</span></button><button data-progress="0.32" aria-label="Scene 2: Connection"><i></i><span>Connection</span></button><button data-progress="0.57" aria-label="Scene 3: Everyday life"><i></i><span>Everyday life</span></button><button data-progress="0.77" aria-label="Scene 4: Awareness"><i></i><span>Awareness</span></button><button data-progress="1" aria-label="Scene 5: Safer"><i></i><span>Safer</span></button></nav><span class="simulation-label"><span></span> CONCEPT SIMULATION</span></div>
+    <div class="timeline-track" aria-hidden="true"><i></i></div><p class="sr-only scene-announcement" aria-live="polite">Scene 1 of 5: A welcoming assisted living community. Scroll or use the chapter buttons to explore.</p>
+    <div class="asset-status" role="status">Preparing your experience<span>Loading local scenes</span></div>
+  </section></main>`;
+}
