@@ -17,5 +17,5 @@ export const faqs = [
   ['How could Wi-Fi be used to sense movement?', 'Movement can change how radio signals travel through a space. The proposed approach would analyze changes in Wi-Fi channel state information to explore whether movement patterns may indicate a possible fall. The classifier and its performance would require validation.'],
   ['Would residents need to wear a device?', 'The proposed concept uses devices installed in the environment rather than wearables. Installation requirements, coverage and practical limitations remain to be determined.'],
   ['Are cameras or microphones part of the concept?', 'No. The proposed sensing approach uses Wi-Fi signals rather than images or audio. Data handling and privacy safeguards are still design work, not verified capabilities.'],
-  ['When can a community try Safer?', 'A pilot timeline has not been announced. Contact details, pilot requirements and availability are placeholders while the concept develops.']
+  ['When can a community try Haven?', 'A pilot timeline has not been announced. Contact details, pilot requirements and availability are placeholders while the concept develops.']
 ];

@@ -6,7 +6,7 @@ import { mountTimeline } from './cinematic/timeline.js';
 const path = location.pathname.replace(/\/$/, '') || '/';
 document.body.dataset.page = path === '/' ? 'home' : path.slice(1);
 document.querySelector('#app').innerHTML = path === '/technology' ? technology() : path === '/login' ? login() : home();
-document.title = path === '/technology' ? 'The Technology — Safer' : path === '/login' ? 'Enterprise Portal — Safer' : 'Safer — A quieter kind of care.';
+document.title = path === '/technology' ? 'The Technology — Haven' : path === '/login' ? 'Enterprise Portal — Haven' : 'Haven — A quieter kind of care.';
 
 if (path === '/') {
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';

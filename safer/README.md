@@ -1,4 +1,4 @@
-# Safer — cinematic hackathon prototype
+# Haven — cinematic hackathon prototype
 
 A local, offline-capable presentation website. No dependency installation, build step, account, API key or internet connection is needed to run it. Python 3 is the only runtime requirement.
 
@@ -18,7 +18,7 @@ If that port is occupied: `python3 safer/serve.py --port 4174`.
 
 ## Present
 
-- `/` — stationary exterior → hallway → sensor installation and waves → resident walking → a gentle transition to a seated pose and simulated fall alert → Safer reveal.
+- `/` — stationary exterior → hallway → sensor installation and waves → resident walking → a gentle transition to a seated pose and simulated fall alert → Haven reveal.
 - `/technology` — polished product concept, proposed sensing pathway, installation, planned benefits, placeholder specifications, FAQ, and explicitly non-submitting demo contact control.
 - `/login` — enterprise portal coming soon; no authentication or dashboard.
 

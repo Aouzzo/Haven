@@ -20,11 +20,11 @@ class StaticHandler(SimpleHTTPRequestHandler):
         super().end_headers()
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Run the offline SAFER prototype')
+    parser = argparse.ArgumentParser(description='Run the offline HAVEN prototype')
     parser.add_argument('--port', type=int, default=4173)
     args = parser.parse_args()
     with ThreadingHTTPServer(('127.0.0.1', args.port), StaticHandler) as server:
-        print(f'SAFER is ready at http://127.0.0.1:{args.port}', flush=True)
+        print(f'HAVEN is ready at http://127.0.0.1:{args.port}', flush=True)
         try:
             server.serve_forever()
         except KeyboardInterrupt:
