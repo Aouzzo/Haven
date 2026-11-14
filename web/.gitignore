@@ -42,3 +42,7 @@ next-env.d.ts
 
 # local lead storage (dev)
 /.data/
+
+# env files
+.env*
+!.env.example
