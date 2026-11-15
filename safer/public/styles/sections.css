@@ -266,3 +266,34 @@ body.present .slide-problem{order:1}body.present #demo{order:2}body.present .sli
 body.present .meadow:not(.footer-scene),body.present .quote-slot,body.present #business .card-grid,body.present #customers .fine-print{display:none}
 body.present .info-section{display:flex;flex-direction:column;justify-content:center}
 @media (max-width:760px){.live-steps{grid-template-columns:1fr}}
+
+/* ---------- THEME: Night shift (branch theme/night-shift) ---------- */
+:root{--ivory:#10140f;--paper:#171d17;--line:#2b332b;--graphite:#efe6d2;--muted:#a49e8e;--sage:#9fc2a6;--sage-light:#223026;--amber:#f0c47a}
+body{background:#10140f;color:#efe6d2}
+.story-after,.info-section,.device-stage{color:#efe6d2}
+.device-stage{background:radial-gradient(ellipse at 35% 55%,#1d241d 0%,#10140f 60%)}
+.device-canvas{mix-blend-mode:normal;filter:drop-shadow(0 30px 60px #000a)}
+.info-card,.person,.credits,.matrix,.why-now,.live-steps div{background:#171d17;border-color:#2b332b}
+.info-card p,.stat span,.why-grid span,.credits span,.device-steps span,.slide-stats span,.slide-list span,.m-row{color:#b8b1a1}
+.info-card h3,.m-row b,.device-steps b{color:#f3ead8}
+.stat{border-color:#efe6d2}
+.m-head{background:#1d241d}
+.m-row:hover{background:#1d241d}
+.honest-note{background:#2a2416;color:#e8d6ae}
+.quote-slot{border-color:#3a443a}
+.quote-slot p{color:#c9c2b2}
+.info-nav{background:#171d17d9;border-color:#2b332b}
+.info-nav a.active{background:#f0c47a;color:#1a1710}
+.over-scene.solid{background:#10140ff2;color:#efe6d2;box-shadow:0 1px 0 #2b332b}
+.meadow:not(.footer-scene) canvas{filter:brightness(.42) saturate(.75) hue-rotate(12deg)}
+.meadow.to-light{background:linear-gradient(var(--night),#10140f)}
+.footer-scene{background:#10140f}
+.footer-scene canvas{filter:brightness(.55) saturate(.8) hue-rotate(18deg)}
+.room-label,.dash-head h2,.room-tile b{font-family:ui-monospace,'Cascadia Mono',Consolas,monospace}
+.slide-live{background:linear-gradient(180deg,#10140f,#171d17)}
+.site-footer{background:#10140f;border-color:#2b332b}
+.brand-reveal{background:radial-gradient(ellipse at 50% 25%,#1e251e 0%,#10140f 70%)}
+.brand-reveal h1,.brand-reveal h2{color:#f3ead8}
+.reveal-content p,.reveal-footnote{color:#b8b1a1}
+.button.secondary{border-color:#3a443a;color:#efe6d2}
+.cinema{background:#070b1c}

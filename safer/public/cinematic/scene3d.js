@@ -46,7 +46,7 @@ const NODE_FACING = [Math.PI / 2, -Math.PI / 2, Math.PI];
 
 const TEAL = new THREE.Color(0x7fe3c6), CORAL = new THREE.Color(0xf08a6c), AMBER = new THREE.Color(0xf2c27a);
 const SUN_DIR = V3(-16, 11, 14).normalize();
-const SKY_TOP = new THREE.Color(0x2c4a86), SKY_MID = new THREE.Color(0x9fa3cf), HORIZON = new THREE.Color(0xf7c48f);
+const SKY_TOP = new THREE.Color(0x070b1c), SKY_MID = new THREE.Color(0x1c2448), HORIZON = new THREE.Color(0x4a4366);   // night-shift theme
 
 // ---------- small helpers ----------
 let seed = 11;
@@ -87,7 +87,7 @@ export function createWorld(canvas, labelEls = []) {
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.AgXToneMapping;
-  renderer.toneMappingExposure = 1.05;
+  renderer.toneMappingExposure = 1.15;
 
   const scene = new THREE.Scene();
   scene.fog = new THREE.Fog(HORIZON, 70, 280);
@@ -96,8 +96,8 @@ export function createWorld(canvas, labelEls = []) {
   const noAO = o => { o.userData.noAO = true; return o; };
 
   // ---------- Lighting: warm low sun, sky/ground bounce, soft shadows ----------
-  scene.add(new THREE.HemisphereLight(0xffe2c8, 0x5d6b4c, 1.25));
-  const sun = new THREE.DirectionalLight(0xffb27a, 3.1);
+  scene.add(new THREE.HemisphereLight(0x7d8fd0, 0x1a2219, .55));
+  const sun = new THREE.DirectionalLight(0xa9bcff, 1.1);   // moonlight
   sun.position.copy(SUN_DIR).multiplyScalar(40);
   sun.castShadow = true;
   sun.shadow.mapSize.set(4096, 4096);
@@ -106,7 +106,7 @@ export function createWorld(canvas, labelEls = []) {
   sun.shadow.normalBias = .025;
   sun.shadow.radius = 4;
   scene.add(sun);
-  const fill = new THREE.DirectionalLight(0x9fb6e6, .45);
+  const fill = new THREE.DirectionalLight(0x6f7fc0, .25);
   fill.position.set(14, 10, -12);
   scene.add(fill);
 
@@ -189,7 +189,7 @@ export function createWorld(canvas, labelEls = []) {
     tile: std(0xffffff, { map: TX.tile, roughness: .55 }), deck: std(0xffffff, { map: TX.planks, color: 0xd9c0a0 }),
     beam: std(0x8a6748), door: std(0x6f8a74, { roughness: .55 }), brass: std(0xd4ad62, { metalness: .8, roughness: .3 }),
     metal: std(0x3b3f3c, { metalness: .5, roughness: .45 }), soil: std(0x5a4130, { roughness: 1 }),
-    glass: std(0xffdcaa, { emissive: 0xffb469, emissiveIntensity: 1.9, roughness: .25 }),
+    glass: std(0xffdcaa, { emissive: 0xffb469, emissiveIntensity: 3.2, roughness: .25 }),
     lampGlow: new THREE.MeshStandardMaterial({ color: 0xfff1d6, emissive: 0xffc77d, emissiveIntensity: 3.2 }),
     bulb: new THREE.MeshBasicMaterial({ color: new THREE.Color(3.2, 2.4, 1.3) }),
     frame: std(0x8a6a4c, { roughness: .6 }), linen: std(0xfbf7ef, { roughness: .95 }), node: std(0x2f3430, { roughness: .4 }),
@@ -231,7 +231,7 @@ export function createWorld(canvas, labelEls = []) {
     fragmentShader: `uniform vec3 top, mid, horizon, sunDir; varying vec3 vDir;
       void main(){ float h = vDir.y; vec3 c = mix(horizon, mid, smoothstep(0.0, .22, h)); c = mix(c, top, smoothstep(.22, .75, h));
         c = mix(c, horizon * .92, smoothstep(0.0, -.15, h));
-        float s = max(dot(normalize(vDir), normalize(sunDir)), 0.); c += vec3(1., .7, .45) * (pow(s, 12.) * .35 + pow(s, 400.) * 2.5);
+        float s = max(dot(normalize(vDir), normalize(sunDir)), 0.); c += vec3(.75, .8, 1.) * (pow(s, 30.) * .15 + pow(s, 2500.) * 3.); vec3 d = normalize(vDir); float st = fract(sin(dot(floor(d * 380.), vec3(12.9898, 78.233, 37.719))) * 43758.5453); c += vec3(1.) * step(.9975, st) * smoothstep(.05, .35, h) * 1.6;
         gl_FragColor = vec4(c, 1.); }`
   }));
   noAO(sky);
@@ -397,7 +397,7 @@ export function createWorld(canvas, labelEls = []) {
     ffSeed.push([x, z, .4 + rnd() * 1.6, rnd() * 6, .3 + rnd() * .5]);
   }
   const ffGeo = new THREE.BufferGeometry(); ffGeo.setAttribute('position', new THREE.BufferAttribute(ffPos, 3));
-  const fireflies = new THREE.Points(ffGeo, new THREE.PointsMaterial({ map: glowTex, color: new THREE.Color(3, 2.5, 1.2), size: .32, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+  const fireflies = new THREE.Points(ffGeo, new THREE.PointsMaterial({ map: glowTex, color: new THREE.Color(3, 2.5, 1.2), size: .4, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
   styl.add(fireflies);
 
   // ---------- Building ----------
