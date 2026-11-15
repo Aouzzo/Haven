@@ -1,15 +1,14 @@
 import { home } from './pages/home.js';
-import { technology } from './pages/technology.js';
-import { login } from './pages/login.js';
 import { mountTimeline } from './cinematic/timeline.js';
 import { mountCursor } from './cinematic/cursor.js';
 import { mountAssembly } from './components/assembly.js';
 import { ASSEMBLY_FRAMES } from './pages/sections.js';
 
+if (['/login', '/technology'].includes(location.pathname.replace(/\/$/, ''))) history.replaceState(null, '', '/');   // removed pages land on home
 const path = location.pathname.replace(/\/$/, '') || '/';
 document.body.dataset.page = path === '/' ? 'home' : path.slice(1);
-document.querySelector('#app').innerHTML = path === '/technology' ? technology() : path === '/login' ? login() : home();
-document.title = path === '/technology' ? 'The Technology — Haven' : path === '/login' ? 'Enterprise Portal — Haven' : 'Haven — A quieter kind of care.';
+document.querySelector('#app').innerHTML = home();
+document.title = 'Haven — A quieter kind of care.';
 
 if (path === '/') {
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';

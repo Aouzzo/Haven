@@ -1,7 +1,7 @@
 // One place for the scroll story. `at` is where the chapter button jumps (0..1 scroll progress).
 // `until` is where the chapter ends. Scene timings live in scene3d.js and timeline.js and follow these beats.
 export const CHAPTERS = [
-  { at: 0, until: .24, name: 'Community', kicker: '01 / A PLACE TO CALL HOME', title: 'A quieter kind of care.', detail: 'An assisted living community, and the people who look after it.' },
+  { at: 0, until: .24, name: 'Community', kicker: '01 / A PLACE TO CALL HOME', title: 'A quieter kind of care.', detail: 'Most falls happen behind closed doors. Staff can’t watch every room.' },
   { at: .31, until: .44, name: 'Sensing', kicker: '02 / THE WI-FI ALREADY THERE', title: 'One small sensor per room.\nThe Wi-Fi is already there.', detail: 'A plug-in ESP32 reads how the building’s own Wi-Fi bends around a body (CSI).' },
   { at: .54, until: .62, name: 'Daily life', kicker: '03 / ROOM 104', title: 'Life, as usual.', detail: 'Movement ripples the signal. No images, no audio, no names.' },
   { at: .72, until: .79, name: 'Possible fall', kicker: '04 / A POSSIBLE FALL', title: 'Someone falls\nand doesn’t get up.', detail: 'The AI spots the sudden change, then the stillness.' },

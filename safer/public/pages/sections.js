@@ -1,7 +1,6 @@
 // Sections below the 3D story, in pitch order: problem, demo, how the AI works, path to customers,
 // competition, privacy. Copy comes from the team's research notes and real conversations.
 // Anything not decided yet is labeled, never invented.
-import { arrow } from '../components/brand.js';
 import { DEMO_VIDEO } from '../cinematic/story.js';
 
 const tag = (text, kind = '') => `<span class="info-tag ${kind}">${text}</span>`;
@@ -58,7 +57,8 @@ export function productSection() {
       <p class="assembly-caption" data-from="159" data-to="209"><span class="eyebrow">05 / SIGNAL</span><strong>The 2.4 GHz antenna lives in the lid.</strong></p>
       <p class="assembly-caption" data-from="210" data-to="240"><span class="eyebrow">06 / DONE</span><strong>Plug it into the wall. That’s it.</strong></p>
     </div>
-  </section>`;
+  </section>
+  <section class="real-build page-width" aria-label="Photos of our real sensor"><div class="process-strip"><figure><img src="/assets/process/sensor-installed.jpg" alt="Our black sensor enclosure plugged into a wall outlet above the baseboard" loading="lazy"><figcaption>The real one, plugged into a wall outlet.</figcaption></figure><figure><img src="/assets/process/sensor-open.jpg" alt="Lid off: the ESP32 board with its antenna lead inside the enclosure" loading="lazy"><figcaption>Lid off: the ESP32 board and its antenna.</figcaption></figure><p class="process-note"><span class="eyebrow">FROM OUR BUILD</span>Built and tested at the hackathon. One per room, powered from a normal outlet.</p></div></section>`;
 }
 
 export function storySections() {
@@ -79,6 +79,15 @@ export function storySections() {
       <div class="quote-slot signal-target"><span class="eyebrow">WHAT WE’RE HEARING</span><p>We showed Haven to staff at The Villages of San Luis Obispo, an assisted living community next door to us. They told us it could be a useful addition to how they look after residents.</p>${tag('Real conversation · more in progress')}</div>
     </div>
     <p class="fine-print">Sources: one-year study of 528 Bavarian nursing homes (<a href="https://pubmed.ncbi.nlm.nih.gov/21816682/" target="_blank" rel="noopener">PubMed 21816682</a>); AHCA/NCAL provider survey, 2021 (<a href="https://www.providermagazine.com/Articles/Pages/Most-Nursing-Homes-and-Assisted-Living-Communities-Face-a-Workforce-Crisis.aspx" target="_blank" rel="noopener">Provider Magazine</a>); ECRI, “Managing Falls in Aging Services.”</p>
+    <div class="why-now demand"><span class="eyebrow">PROOF OF DEMAND · THE MARKET IS ALREADY BUYING</span>
+      <div class="demand-grid">
+        <div><b>800+</b><span>senior living communities use SafelyYou’s AI fall detection, which raised a $43M Series C in 2025. It uses cameras; Haven doesn’t.</span></div>
+        <div><b>$100M</b><span>Series B for Inspiren (2025), whose AI fall and safety platform reports 500+ communities.</span></div>
+        <div><b>Nurse-call</b><span>Austco added Vayyar’s camera-free radar fall detection to its nurse-call platform, the same channel we plan to use.</span></div>
+        <div><b>32%</b><span>of not-for-profit providers without a fall-detection partner plan to add automatic fall detection within 12 months.</span></div>
+      </div>
+    </div>
+    <p class="fine-print">Company-reported figures. Sources: <a href="https://www.safely-you.com/news/powered-by-43m-in-series-c-funding-safelyyou-tackles-senior-livings-critical-need-for-predictive-care-with-ai-solution/" target="_blank" rel="noopener">SafelyYou</a>, <a href="https://www.insightpartners.com/ideas/inspiren-raises-100m-series-b-to-lead-senior-livings-ai-driven-future/" target="_blank" rel="noopener">Insight Partners</a>, <a href="https://prnewswire.com/apac/news-releases/austco-augments-industry-leading-nurse-call-and-healthcare-communications-solutions-with-4d-imaging-radar-fall-detection-by-vayyar-301770239.html" target="_blank" rel="noopener">Austco / Vayyar</a>, <a href="https://www.ziegler.com/media/kz4bqjld/ziegler-linkage-leadingage-cast-cto-hotline_fnl.pdf" target="_blank" rel="noopener">Ziegler · LeadingAge CAST CTO Hotline</a>.</p>
   </section>
 
   <section id="demo" class="info-section page-width reveal-on-scroll">
@@ -93,7 +102,16 @@ export function storySections() {
     <div class="card-grid four">
       ${aiSteps.map(([k, h, p]) => `<article class="info-card signal-target"><span class="card-kicker">${k}</span><h3>${h}</h3><p>${p}</p></article>`).join('')}
     </div>
+    <div class="process-strip"><figure><img src="/assets/process/training-fall.jpg" alt="Training page: the pose model outlines a team member falling sideways onto a mat and labels it fall" loading="lazy"><figcaption>Training a fall: the pose model labels it from the webcam.</figcaption></figure><figure><img src="/assets/process/training-sitting.jpg" alt="Training page: camera label says sitting while the Wi-Fi-only model still says standing" loading="lazy"><figcaption>Mid-training: the camera says sitting, Wi-Fi is still learning.</figcaption></figure><p class="process-note"><span class="eyebrow">FROM OUR BUILD</span>Our webcam teacher page during guided recording: the camera’s label and the Wi-Fi model’s guess side by side.</p></div>
     <div class="why-now"><span class="eyebrow">WHY IT’S A NEW USE OF AI</span><div class="why-grid"><div><b>No hand-labeling</b><span>A pose model labels every half second of Wi-Fi data automatically. Teaching a room takes a few minutes of guided movement instead of hours of tagging.</span></div><div><b>One AI teaches another</b><span>A vision model trains a Wi-Fi model. Haven gets what a camera can tell, with no camera in the room.</span></div><div><b>It breaks without AI</b><span>No human or simple rule can read CSI as “sitting” or “fell.” Without the model, there is no product.</span></div></div></div>
+    <div class="why-now built"><span class="eyebrow">HOW WE BUILT IT WITH AI</span>
+      <div class="demand-grid">
+        <div class="lead"><b>OpenAI Codex</b><span>Our main AI teammate. Codex researched Wi-Fi sensing and the market with us and worked as a coding agent in our shared repository, taking build tasks alongside the team.</span></div>
+        <div><b>Claude Code</b><span>Helped build the ESP32 firmware, compare detection models on our recordings, and build this website and its 3D scene.</span></div>
+        <div><b>Google MediaPipe</b><span>Google’s open-source pose model (Apache-2.0) does the image recognition while we train: it reads posture from the webcam so Haven can label the Wi-Fi data.</span></div>
+        <div><b>Open-source firmware</b><span>Our ESP32 firmware is built on Espressif’s open-source ESP-IDF and speaks the same CSI packet format as the open-source RuView project.</span></div>
+      </div>
+    </div>
     <p class="fine-print">The video never leaves the browser and is never stored. Only Wi-Fi features and activity labels are saved. Pose model: Google MediaPipe Pose Landmarker (Apache-2.0). Approach adapted from wifi-sensing-kit (MIT).</p>
   </section>
 
@@ -103,15 +121,23 @@ export function storySections() {
       <article class="info-card signal-target"><span class="card-kicker">Who pays</span><h3>The facility</h3><p>Nursing homes and assisted living operators. The decision sits with the executive director or director of nursing, who answer for fall rates and the lawsuits that follow.</p></article>
       <article class="info-card signal-target"><span class="card-kicker">Price</span><h3>$20 / room / month</h3><p>Sensors included. No hardware for the facility to buy up front.</p>${tag('Working assumption', 'pending')}</article>
       <article class="info-card signal-target"><span class="card-kicker">Pays for itself</span><h3>~4 falls a year</h3><p>100 rooms is about $24,000 a year: roughly four falls at $6,306 each, or a tenth of one average fall lawsuit (~$245K).</p></article>
-      <article class="info-card signal-target"><span class="card-kicker">Our cost</span><h3>$18–39 per room</h3><p>Estimated hardware for a three-sensor kit at about 1,000 kits.</p><small>Bulk catalog prices, not quotes. Excludes shipping and certification.</small></article>
+      <article class="info-card signal-target"><span class="card-kicker">Scales per room</span><h3>One sensor, one room</h3><p>Each room gets one plug-in sensor on the Wi-Fi the building already has. Adding a room means adding one sensor: no rewiring, no new network.</p></article>
     </div>
     <div class="why-now"><span class="eyebrow">WHERE THE FIRST CUSTOMERS COME FROM</span><div class="why-grid"><div><b>1. Next door</b><span>Start with The Villages of San Luis Obispo, the community we’ve already talked to, as a first pilot candidate.</span></div><div><b>2. Local operators</b><span>Then other nursing homes and assisted living communities nearby, reached in person by our team.</span></div><div><b>3. Nurse-call partners</b><span>Later, companies that already sell call systems to facilities (such as Austco or TekTone) could offer Haven as an add-on.</span></div></div></div>
-    <div class="why-now"><span class="eyebrow">WHY THEY’D SWITCH</span><div class="why-grid"><div><b>Nothing to wear</b><span>Pendants get taken off and still need a button press. Haven works on its own.</span></div><div><b>No cameras</b><span>Families and residents say no to video in bedrooms. Haven captures no images or audio.</span></div><div><b>Cheaper per room</b><span>About $18–39 of hardware per room at scale, versus ~$199–250 per radar device plus a monthly fee.</span></div></div></div>
-    <p class="fine-print">Market: about 15,000 U.S. nursing homes and 30,000 assisted living communities, 2.2M residents, or roughly $530M a year at $240 per resident (our estimate). Lawsuit figure: CNA Aging Services Claim Report via Skilled Nursing News (2022).</p>
+    <div class="why-now"><span class="eyebrow">WHY THEY’D SWITCH</span><div class="why-grid"><div><b>Nothing to wear</b><span>Pendants get taken off and still need a button press. Haven works on its own.</span></div><div><b>No cameras</b><span>Families and residents say no to video in bedrooms. Haven captures no images or audio.</span></div><div><b>Nothing to install</b><span>One plug-in sensor per room on the existing Wi-Fi, versus ~$199–250 per radar device plus a monthly fee.</span></div></div></div>
+    <div class="why-now"><span class="eyebrow">PILOT PLAN, THEN SCALE · LIKELY REVENUE</span>
+      <div class="plan-grid">
+        <div><span class="plan-when">Months 0–3</span><b>Pilot</b><p>About 20 rooms at The Villages of San Luis Obispo, free for 60 days. We measure time from fall to help, missed falls and false alerts, logged with staff.</p><strong>$0</strong></div>
+        <div><span class="plan-when">Year 1</span><b>Central Coast</b><p>Convert the pilot, then 5 local communities, about 400 rooms, sold in person to directors of nursing.</p><strong>~$96K / yr</strong></div>
+        <div><span class="plan-when">Years 2–3</span><b>California</b><p>About 100 communities, 8,000 rooms, through nurse-call partners who already sell to facilities.</p><strong>~$1.9M / yr</strong></div>
+        <div><span class="plan-when">Year 5</span><b>National</b><p>About 1,000 communities, 80,000 rooms: roughly 2% of U.S. communities (SafelyYou reports 800+).</p><strong>~$19M / yr</strong></div>
+      </div>
+    </div>
+    <p class="fine-print">Revenue projection at the $20 per room per month working price ($240 per room per year). Revenue only; not a profit forecast. Market: about 15,000 U.S. nursing homes and 30,000 assisted living communities, 2.2M residents, or roughly $530M a year at $240 per resident (our estimate). Lawsuit figure: CNA Aging Services Claim Report via Skilled Nursing News (2022).</p>
   </section>
 
   <section id="competition" class="info-section page-width reveal-on-scroll">
-    <div class="info-head"><span class="eyebrow">05 / COMPETITION</span><h2>How Haven<br><em>compares</em>.</h2><p>Every alternative breaks somewhere. Haven costs about $18–39 of hardware per room at scale, with nothing to wear and nothing to remember.</p></div>
+    <div class="info-head"><span class="eyebrow">05 / COMPETITION</span><h2>How Haven<br><em>compares</em>.</h2><p>Every alternative breaks somewhere. Haven adds one small plug-in sensor per room on the building’s own Wi-Fi, with nothing to wear and nothing to remember.</p></div>
     <div class="compare-table" role="table" aria-label="Competitor comparison">
       <div class="compare-row compare-header" role="row"><span role="columnheader">Approach</span><span role="columnheader">Examples</span><span role="columnheader">Strength</span><span role="columnheader">Where Haven fits</span></div>
       ${competitors.map(([a, e, s, h]) => `<div class="compare-row signal-target" role="row"><b role="cell">${a}</b><span role="cell">${e}</span><span role="cell">${s}</span><span role="cell">${h}</span></div>`).join('')}
@@ -129,7 +155,7 @@ export function storySections() {
       <article class="info-card signal-target"><span class="card-kicker">Security</span><h3>Treated as health data</h3><p>Encrypted and handled with HIPAA-level care.</p>${tag('Planned', 'pending')}</article>
       <article class="info-card signal-target"><span class="card-kicker">Honest claims</span><h3>An alerting aid</h3><p>Haven detects possible falls and alerts staff faster. It does not prevent falls or diagnose anything.</p></article>
     </div>
-    <div class="info-cta"><a class="button primary" href="/technology">Explore the Technology ${arrow}</a><span>Prototype. Not a medical device.</span></div>
+    <div class="info-cta"><span>Prototype. Not a medical device.</span></div>
   </section>
 </div>`;
 }

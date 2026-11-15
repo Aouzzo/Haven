@@ -3,7 +3,7 @@ export function shield(className = '') {
 }
 export const arrow = `<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 export function header(home = false) {
-  return `<header class="site-header ${home ? 'over-scene' : ''}"><a class="wordmark" href="/" aria-label="Haven home">${shield()}<span>Haven<span class="brand-dot">.</span></span></a><div class="header-right">${home ? '<span class="header-note">Thoughtfully connected.</span>' : '<a class="back-home" href="/">Back to home</a>'}<a class="login-link" href="/login">Log In <span aria-hidden="true">↗</span></a></div></header>`;
+  return `<header class="site-header ${home ? 'over-scene' : ''}"><a class="wordmark" href="/" aria-label="Haven home">${shield()}<span>Haven<span class="brand-dot">.</span></span></a><div class="header-right">${home ? '<span class="header-note">Thoughtfully connected.</span>' : '<a class="back-home" href="/">Back to home</a>'}</div></header>`;
 }
 export function footer() {
   return `<footer class="site-footer"><a class="wordmark" href="/">${shield()}<span>Haven.</span></a><p>Prototype. Not a medical device.</p><span>Designed for peace of mind.</span></footer>`;
