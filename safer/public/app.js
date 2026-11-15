@@ -5,6 +5,11 @@ import { mountTimeline } from './cinematic/timeline.js';
 import { mountCursor } from './cinematic/cursor.js';
 import { mountAssembly } from './components/assembly.js';
 import { ASSEMBLY_FRAMES } from './pages/sections.js';
+import { mountFx, mountMarquee } from './cinematic/fx.js';
+import { mountRoom } from './cinematic/room.js';
+import { mountValley } from './cinematic/valley.js';
+// One failing extra must never take the page down.
+const safe = (name, fn) => { try { fn(); } catch (e) { console.warn(`[haven] ${name} failed`, e); } };
 
 const path = location.pathname.replace(/\/$/, '') || '/';
 document.body.dataset.page = path === '/' ? 'home' : path.slice(1);
@@ -19,5 +24,9 @@ if (path === '/') {
   document.querySelector('.asset-status').classList.add('loaded');
   const assembly = document.querySelector('.assembly');
   if (assembly) mountAssembly(assembly, ASSEMBLY_FRAMES);
+  safe('fx', () => mountFx());
+  safe('marquee', () => mountMarquee());
+  safe('room', () => mountRoom(document.querySelector('#ai')));
+  safe('valley', () => mountValley(document.querySelector('.valley-footer')));
 }
 mountCursor({ onPing: (x, y) => dispatchEvent(new CustomEvent('haven:ping', { detail: { x, y } })) });

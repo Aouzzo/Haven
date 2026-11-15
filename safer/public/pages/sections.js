@@ -3,6 +3,7 @@
 // Anything not decided yet is labeled, never invented.
 import { arrow } from '../components/brand.js';
 import { DEMO_VIDEO } from '../cinematic/story.js';
+import { brandMarquee, roomDemo, teamSection, valleyFooter, madeSection } from './additions.js';
 
 const tag = (text, kind = '') => `<span class="info-tag ${kind}">${text}</span>`;
 
@@ -33,7 +34,7 @@ const competitors = [
 
 const aiSteps = [
   ['01 / SENSE', 'Wi-Fi readings', 'Three ESP32 boards measure how the Wi-Fi signal between them changes (CSI). Every half second, Haven sums up the last 1.5 seconds: the shape of the signal across subcarriers, how much it spreads, and how fast it changes.'],
-  ['02 / TEACH', 'The camera labels', 'During training only, a webcam runs Google’s MediaPipe Pose in the browser. It finds the body’s joints and reads torso angle, hip movement and knee angle to name what the person is doing: empty, standing, walking, sitting, lying, or a fall. Only that one word leaves the browser.'],
+  ['02 / TEACH', 'The camera labels', 'During training only, a webcam runs Google’s MediaPipe Pose in the browser. It finds the body’s joints and reads torso angle, hip movement and knee angle to name what the person is doing: empty, standing, walking, or lying on the floor. Only that one word leaves the browser.'],
   ['03 / LEARN', 'Wi-Fi learns from it', 'Each Wi-Fi window is paired with the camera’s label. A machine-learning model (k-nearest neighbours on standardized signal features) learns which Wi-Fi patterns go with which activity, then is tested on recordings it never trained on.'],
   ['04 / DETECT', 'Camera removed', 'The webcam is unplugged. Haven now runs on Wi-Fi alone. A sudden change followed by lying still means a possible fall; if the person stays down, staff get the room, the time and how long there has been no movement.']
 ];
@@ -63,7 +64,8 @@ export function productSection() {
 
 export function storySections() {
   return `<div class="story-after">
-  <nav class="info-nav page-width" aria-label="More about Haven"><a href="#problem">Problem</a><a href="#demo">Demo</a><a href="#ai">How the AI works</a><a href="#business">Customers</a><a href="#competition">Competition</a><a href="#privacy">Privacy</a></nav>
+  ${brandMarquee()}
+  <nav class="info-nav page-width" aria-label="More about Haven"><a href="#problem">Problem</a><a href="#demo">Demo</a><a href="#made">How we made it</a><a href="#ai">How the AI works</a><a href="#business">Customers</a><a href="#competition">Competition</a><a href="#privacy">Privacy</a><a href="#team">Team</a></nav>
 
   <section id="problem" class="info-section page-width reveal-on-scroll">
     <div class="info-head"><span class="eyebrow">01 / THE PROBLEM</span><h2>Too many hallways.<br><em>Not enough hands.</em></h2><p>Care facilities are short-staffed. One caregiver can’t watch every hallway and every room, and most falls happen behind a closed door. If a resident can’t reach the call button, nobody knows until the next check.</p></div>
@@ -84,12 +86,15 @@ export function storySections() {
   <section id="demo" class="info-section page-width reveal-on-scroll">
     <div class="info-head"><span class="eyebrow">02 / DEMO</span><h2>See it in a <em>real room</em>.</h2><p>Three small Wi-Fi sensors in a normal room. A person walks in, falls, and doesn’t get up. No camera, nothing worn, no button pressed. Haven sees a sudden change in the signal, then stillness, and the caregiver gets the alert.</p></div>
     ${video()}
-    <div class="stat-row"><div class="stat signal-target"><b>~96%</b><span>of activities identified correctly in rooms the model was trained in, across repeated training runs</span></div><div class="stat signal-target"><b>6</b><span>activities it learns: empty, standing, walking, sitting, lying, and falling</span></div><div class="stat signal-target"><b>0</b><span>images used once it’s trained. Wi-Fi needs no light, so Haven works in the dark.</span></div></div>
-    <p class="fine-print">Our own recordings on our ESP32 boards, Nov 14, 2026. We trained and tested the model several times; each test used recordings held out from training, in the same room. A new room needs its own short training session first.</p>
+    <div class="stat-row"><div class="stat signal-target"><b>95%</b><span>of activities identified on a test the model never saw: empty room, standing, walking, and lying on the floor</span></div><div class="stat signal-target"><b>0</b><span>false alarms in 12 tests of everyday activity</span></div><div class="stat signal-target"><b>3 sec</b><span>on the floor before the alert fires. No camera, no light needed.</span></div></div>
+    <p class="fine-print">Our own recordings on our ESP32 boards, Nov 14, 2026: one room, one person. The model trained on three guided rounds and was scored on a fourth it never saw. In those tests 18 of 20 lie-downs raised an alert. 95% is our best sensor placement; three other placements scored 77–87%, which is why each room gets its own short training session. Falls were acted out by lying down on a mat; real falls have not been tested.</p>
   </section>
 
+  ${madeSection()}
+
   <section id="ai" class="info-section page-width reveal-on-scroll">
-    <div class="info-head"><span class="eyebrow">03 / HOW THE AI WORKS</span><h2>The camera teaches.<br><em>Then it leaves.</em></h2><p>To a person, Wi-Fi signal data looks like noise. A camera understands posture easily but has no place in a bedroom. Haven uses one to teach the other: the camera labels what’s happening while Wi-Fi learns to recognize it, then the camera goes away for good.</p></div>
+    <div class="info-head"><span class="eyebrow">04 / HOW THE AI WORKS</span><h2>The camera teaches.<br><em>Then it leaves.</em></h2><p>To a person, Wi-Fi signal data looks like noise. A camera understands posture easily but has no place in a bedroom. Haven uses one to teach the other: the camera labels what’s happening while Wi-Fi learns to recognize it, then the camera goes away for good.</p></div>
+    ${roomDemo()}
     <div class="card-grid four">
       ${aiSteps.map(([k, h, p]) => `<article class="info-card signal-target"><span class="card-kicker">${k}</span><h3>${h}</h3><p>${p}</p></article>`).join('')}
     </div>
@@ -98,7 +103,7 @@ export function storySections() {
   </section>
 
   <section id="business" class="info-section page-width reveal-on-scroll">
-    <div class="info-head"><span class="eyebrow">04 / PATH TO CUSTOMERS</span><h2>Nursing homes<br><em>subscribe per room</em>.</h2><p>Haven is a subscription. The facility pays one monthly price per room, sensors included, so there’s no hardware to buy up front. It pays for itself if it helps avoid about four falls a year.</p></div>
+    <div class="info-head"><span class="eyebrow">05 / PATH TO CUSTOMERS</span><h2>Nursing homes<br><em>subscribe per room</em>.</h2><p>Haven is a subscription. The facility pays one monthly price per room, sensors included, so there’s no hardware to buy up front. It pays for itself if it helps avoid about four falls a year.</p></div>
     <div class="card-grid four">
       <article class="info-card signal-target"><span class="card-kicker">Who pays</span><h3>The facility</h3><p>Nursing homes and assisted living operators. The decision sits with the executive director or director of nursing, who answer for fall rates and the lawsuits that follow.</p></article>
       <article class="info-card signal-target"><span class="card-kicker">Price</span><h3>$20 / room / month</h3><p>Sensors included. No hardware for the facility to buy up front.</p>${tag('Working assumption', 'pending')}</article>
@@ -111,7 +116,7 @@ export function storySections() {
   </section>
 
   <section id="competition" class="info-section page-width reveal-on-scroll">
-    <div class="info-head"><span class="eyebrow">05 / COMPETITION</span><h2>How Haven<br><em>compares</em>.</h2><p>Every alternative breaks somewhere. Haven costs about $18–39 of hardware per room at scale, with nothing to wear and nothing to remember.</p></div>
+    <div class="info-head"><span class="eyebrow">06 / COMPETITION</span><h2>How Haven<br><em>compares</em>.</h2><p>Every alternative breaks somewhere. Haven costs about $18–39 of hardware per room at scale, with nothing to wear and nothing to remember.</p></div>
     <div class="compare-table" role="table" aria-label="Competitor comparison">
       <div class="compare-row compare-header" role="row"><span role="columnheader">Approach</span><span role="columnheader">Examples</span><span role="columnheader">Strength</span><span role="columnheader">Where Haven fits</span></div>
       ${competitors.map(([a, e, s, h]) => `<div class="compare-row signal-target" role="row"><b role="cell">${a}</b><span role="cell">${e}</span><span role="cell">${s}</span><span role="cell">${h}</span></div>`).join('')}
@@ -120,16 +125,18 @@ export function storySections() {
   </section>
 
   <section id="privacy" class="info-section page-width reveal-on-scroll">
-    <div class="info-head"><span class="eyebrow">06 / PRIVACY</span><h2>Private<br><em>by design</em>.</h2><p>Haven senses changes in the Wi-Fi signal. It never sees a face and never hears a voice.</p></div>
+    <div class="info-head"><span class="eyebrow">07 / PRIVACY</span><h2>Private<br><em>by design</em>.</h2><p>Haven senses changes in the Wi-Fi signal. It never sees a face and never hears a voice.</p></div>
     <div class="card-grid three">
       <article class="info-card signal-target"><span class="card-kicker">No cameras</span><h3>No images, no audio</h3><p>No cameras, no microphones, and nothing for residents to wear.</p></article>
       <article class="info-card signal-target"><span class="card-kicker">No identity</span><h3>Rooms, not people</h3><p>Alerts show a room number, the time, and minutes without movement. No names, photos or health records.</p></article>
       <article class="info-card signal-target"><span class="card-kicker">Training only</span><h3>Camera as teacher</h3><p>A webcam labels what’s happening only while we train the model. Then it’s removed, and Haven runs on Wi-Fi alone.</p></article>
       <article class="info-card signal-target"><span class="card-kicker">On site</span><h3>Local processing</h3><p>Signal analysis runs on the facility’s own equipment, so raw Wi-Fi data stays in the building.</p>${tag('Planned', 'pending')}</article>
-      <article class="info-card signal-target"><span class="card-kicker">Security</span><h3>Treated as health data</h3><p>Encrypted and handled with HIPAA-level care.</p>${tag('Planned', 'pending')}</article>
+      <article class="info-card signal-target"><span class="card-kicker">Security</span><h3>Treated as health data</h3><p>Alert data encrypted in transit and at rest.</p>${tag('Planned', 'pending')}</article>
       <article class="info-card signal-target"><span class="card-kicker">Honest claims</span><h3>An alerting aid</h3><p>Haven detects possible falls and alerts staff faster. It does not prevent falls or diagnose anything.</p></article>
     </div>
     <div class="info-cta"><a class="button primary" href="/technology">Explore the Technology ${arrow}</a><span>Prototype. Not a medical device.</span></div>
   </section>
+  ${teamSection()}
+  ${valleyFooter()}
 </div>`;
 }
