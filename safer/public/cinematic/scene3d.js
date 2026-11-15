@@ -36,18 +36,23 @@ const KEYS = [
   [.34, [-1.5, 22, 8.5], [-3.6, 0, 1.6]],
   [.46, [-1.6, 6.8, 10.6], [-4.3, .6, 3.2]],
   [.6, [-2.7, 4.5, 8.6], [-4.3, .6, 3.2]],          // follow the resident
-  [.72, [-2.6, 3.4, 7.2], [-4, .35, 3.4]],           // close on the fall
-  [.8, [-.2, 6.6, 7.4], [-3.1, .3, .9]],            // the caregiver heads down the corridor
+  [.705, [-2.6, 3.4, 7.2], [-4, .35, 3.4]],          // close on the fall
+  [.75, [-3.5, 1.35, 2.75], [-3.8, .6, 1.09]],     // pan off the resident onto the Haven sensor on the wall
+  [.775, [-3.68, 1.15, 2.45], [-3.86, .6, 1.09]],    // hold on the sensor as it sends the alert
+  [.82, [-.2, 6.6, 7.4], [-3.1, .3, .9]],            // the caregiver heads down the corridor
   [.88, [-1.6, 4.2, 7.4], [-3.9, .45, 2.9]],         // and kneels beside the resident
   [1, [30, 16, 40], [-6, 9, -22]]                    // wide: the whole community at dusk
 ];
 
-// Three ESP32 sensors in room 104 (world coordinates).
-const NODE_Y = FLOOR + 1.05;
-const NODES = [V3(-6.42, NODE_Y, 1.35), V3(-2.38, NODE_Y, 1.35), V3(-4.4, NODE_Y, 5.04)];
-const NODE_FACING = [Math.PI / 2, -Math.PI / 2, Math.PI];
+// One small plug-in sensor per room (low on the corridor-side wall), all listening to the
+// building's existing Wi-Fi router, mounted on the corridor wall.
+const NODE_Y = FLOOR + .34;
+const ROUTER = V3(-1.25, FLOOR + 1.02, -.9);
+const NODES = ROOMS.map(r => V3(r.x + .66, NODE_Y, (r.z > 0 ? 1 : -1) * 1.09));
+const NODE_FACING = ROOMS.map(r => r.z > 0 ? 0 : Math.PI);
+const I104 = ROOMS.findIndex(r => r.n === 104);
 
-const TEAL = new THREE.Color(0x7fe3c6), CORAL = new THREE.Color(0xf08a6c), AMBER = new THREE.Color(0xf2c27a);
+const TEAL = new THREE.Color(0xf3d6a4), CORAL = new THREE.Color(0xf08a6c), AMBER = new THREE.Color(0xf2c27a);
 const SUN_DIR = V3(-16, 11, 14).normalize();
 const SKY_TOP = new THREE.Color(0x24467f), SKY_MID = new THREE.Color(0x8fb0d6), HORIZON = new THREE.Color(0xf6d1a2);
 const HAZE = new THREE.Color(0xb9c3cc);
@@ -958,38 +963,47 @@ export function createWorld(canvas, labelEls = []) {
     noAO(mesh(new THREE.BoxGeometry(w, .03, d), outlineMat, x, 0, z, outline, false)).receiveShadow = false;
   }
 
-  // ---------- ESP32 sensors, waves and signal particles ----------
-  const ledMat = new THREE.MeshBasicMaterial({ color: TEAL.clone().multiplyScalar(2.5) });
-  const haloMat = new THREE.MeshBasicMaterial({ color: TEAL, transparent: true, opacity: .3, depthWrite: false });
+  // ---------- Sensors, the building's router, Wi-Fi waves and signal particles ----------
+  const ledMat = new THREE.MeshBasicMaterial({ color: TEAL.clone().multiplyScalar(2.2) });
+  const haloMat = new THREE.MeshBasicMaterial({ color: TEAL, transparent: true, opacity: .32, depthWrite: false });
+  const caseMat = std(0xefe6d6, { roughness: .55 });           // same warm ivory as the walls
   const nodes = NODES.map((p, i) => {
     const g = new THREE.Group();
     g.position.copy(p);
     g.rotation.y = NODE_FACING[i];
     scene.add(g);
-    mesh(new RoundedBoxGeometry(.28, .17, .07, 3, .025), M.node, 0, 0, 0, g);
-    mesh(new THREE.CylinderGeometry(.012, .012, .2, 6), M.node, .1, .18, 0, g);
-    mesh(new THREE.SphereGeometry(.03, 10, 8), ledMat, -.07, .02, .04, g, false);
-    const halo = noAO(mesh(new THREE.SphereGeometry(.16, 16, 12), haloMat, 0, 0, .05, g, false));
+    rbox(.13, .1, .05, caseMat, 0, 0, 0, g, .016);                       // plug-in sensor, about the size of a phone charger
+    rbox(.06, .03, .01, std(0xd9cdb8, { roughness: .6 }), 0, -.06, -.012, g, .004); // outlet plate edge
+    mesh(new THREE.SphereGeometry(.009, 8, 6), ledMat, .03, .022, .024, g, false);
+    const halo = noAO(mesh(new THREE.SphereGeometry(.09, 14, 10), haloMat, 0, 0, .03, g, false));
     g.userData = { halo, flash: -10 };
     g.scale.setScalar(0);
     return g;
   });
+  // The existing building router: a slim wall-mounted unit with two antennas.
+  const router = new THREE.Group();
+  router.position.copy(ROUTER);
+  scene.add(router);
+  rbox(.34, .2, .05, std(0xf4efe6, { roughness: .45 }), 0, 0, 0, router, .02);
+  for (const dx of [-.12, .12]) { const ant = mesh(new THREE.CapsuleGeometry(.012, .16, 3, 6), std(0xe9e2d4, { roughness: .5 }), dx, .17, 0, router); ant.rotation.z = dx > 0 ? -.15 : .15; }
+  for (let k = 0; k < 3; k++) mesh(new THREE.SphereGeometry(.008, 6, 5), ledMat, -.06 + k * .03, -.06, .028, router, false);
+  const routerHalo = noAO(mesh(new THREE.SphereGeometry(.18, 16, 12), haloMat, 0, 0, .04, router, false));
 
-  const ringGeo = new THREE.RingGeometry(.94, 1, 64);
+  const ringGeo = new THREE.RingGeometry(.96, 1, 72);
   const waves = [];
-  NODES.forEach((p, i) => {
-    for (let k = 0; k < 3; k++) {
-      const w = noAO(mesh(ringGeo, new THREE.MeshBasicMaterial({ color: TEAL, transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide }), p.x, p.y - .02, p.z, scene, false));
-      w.rotation.x = -Math.PI / 2;
-      w.receiveShadow = false;
-      w.userData.phase = k / 3 + i * .13;
-      waves.push(w);
-    }
-  });
+  const addWave = (p, phase, big) => {
+    const w = noAO(mesh(ringGeo, new THREE.MeshBasicMaterial({ color: TEAL, transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide }), p.x, FLOOR + .07, p.z, scene, false));
+    w.rotation.x = -Math.PI / 2;
+    w.receiveShadow = false;
+    w.userData = { phase, big };
+    waves.push(w);
+  };
+  for (let k = 0; k < 4; k++) addWave(ROUTER, k / 4, true);          // the router broadcasting through the wing
+  for (let k = 0; k < 2; k++) addWave(NODES[I104], k / 2 + .2, false);
 
-  const LINKS = [[0, 1], [1, 2], [2, 0]], PER = 26;
+  const LINKS = NODES.map((_, i) => i), PER = 22;
   const particleMat = new THREE.MeshBasicMaterial({ color: TEAL, transparent: true, opacity: 0, depthWrite: false });
-  const particles = noAO(new THREE.InstancedMesh(new THREE.SphereGeometry(.035, 8, 6), particleMat, LINKS.length * PER));
+  const particles = noAO(new THREE.InstancedMesh(new THREE.SphereGeometry(.026, 8, 6), particleMat, LINKS.length * PER));
   particles.frustumCulled = false;
   scene.add(particles);
 
@@ -1121,7 +1135,7 @@ export function createWorld(canvas, labelEls = []) {
   addEventListener('resize', resize);
 
   const projected = V3(0, 0, 0);
-  const labelRooms = labelEls.map(el => ROOMS.find(r => String(r.n) === el.dataset.room));
+  const labelRooms = labelEls.map(el => el.dataset.sensor ? { sensor: true, x: NODES[I104].x, z: NODES[I104].z + .05 } : el.dataset.router ? { router: true, x: ROUTER.x, z: ROUTER.z } : ROOMS.find(r => String(r.n) === el.dataset.room));
   let lastT = 0, shadowP = -1;
 
   function render(p, t) {
@@ -1164,20 +1178,23 @@ export function createWorld(canvas, labelEls = []) {
     const alert = between(p, .66, .7) * (1 - between(p, .93, .97));
     const sensing = between(p, .3, .36) * (1 - between(p, .93, .98));
 
+    const sensorShot = between(p, .725, .755) * (1 - between(p, .785, .81));   // camera close on the Room 104 sensor
     nodes.forEach((g, i) => {
-      const s = between(p, .25 + i * .025, .3 + i * .025);
-      g.scale.setScalar(s * (1 + Math.sin(s * Math.PI) * .25) * 1.8);
+      const s = between(p, .25 + i * .012, .29 + i * .012);
+      g.scale.setScalar(s * (1 + Math.sin(s * Math.PI) * .35));
       const flash = Math.max(0, 1 - (t - g.userData.flash) / .6);
-      g.userData.halo.scale.setScalar(1 + flash * 1.6 + Math.sin(t * 3 + i) * .08 * motion);
+      const hero = i === I104 ? sensorShot : 0;
+      g.userData.halo.scale.setScalar((1 + flash * 1.6 + Math.sin(t * 3 + i) * .1 * motion + hero * (.25 + Math.sin(t * 5) * .15 * motion)) * (i === I104 ? 1.6 : 1.15));
     });
+    routerHalo.scale.setScalar(sensing * (1 + Math.sin(t * 2.2) * .12 * motion));
     haloMat.color.copy(TEAL).lerp(CORAL, alert);
-    ledMat.color.copy(TEAL).lerp(CORAL, alert).multiplyScalar(2.5);
+    ledMat.color.copy(TEAL).lerp(CORAL, alert).multiplyScalar(2.2);
 
     waves.forEach(w => {
-      const cycle = motion ? (t * .45 + w.userData.phase) % 1 : w.userData.phase;
-      w.scale.setScalar(.2 + cycle * 2.4);
-      w.material.opacity = (1 - cycle) * .45 * sensing;
-      w.material.color.copy(TEAL).lerp(CORAL, alert);
+      const cycle = motion ? (t * (w.userData.big ? .3 : .5) + w.userData.phase) % 1 : w.userData.phase;
+      w.scale.setScalar(w.userData.big ? .3 + cycle * 7.5 : .15 + cycle * 1.3);
+      w.material.opacity = (1 - cycle) * (w.userData.big ? .42 : .5) * sensing;
+      w.material.color.copy(TEAL).lerp(CORAL, w.userData.big ? alert * .5 : alert);
     });
 
     const at = walkPath.getPoint(smooth(walk));
@@ -1225,19 +1242,20 @@ export function createWorld(canvas, labelEls = []) {
     particleMat.opacity = sensing * .9;
     particleMat.color.copy(TEAL).lerp(CORAL, alert);
     let n = 0;
-    LINKS.forEach(([a, b], li) => {
+    LINKS.forEach((li) => {
       for (let k = 0; k < PER; k++) {
-        const f = motion ? (t * .3 + k / PER + li * .17) % 1 : k / PER;
-        dummy.position.lerpVectors(NODES[a], NODES[b], f);
+        const f = motion ? (t * .25 + k / PER + li * .13) % 1 : k / PER;
+        dummy.position.lerpVectors(ROUTER, NODES[li], f);
         dummy.rotation.set(0, 0, 0);
-        const wob = Math.sin(f * Math.PI) * (.04 + moving * .09) * Math.sin(t * (3 + moving * 5) + k * 1.7) * (motion || .3);
+        const mv = li === I104 ? moving : 0;
+        const wob = Math.sin(f * Math.PI) * (.025 + mv * .08) * Math.sin(t * (3 + mv * 5) + k * 1.7) * (motion || .3);
         dummy.position.y += wob;
         const d = Math.hypot(dummy.position.x - bodyPos.x, dummy.position.z - bodyPos.z);
         if (d < 1) {
           const push = (1 - d) * (still ? .25 : .45 + moving * .35);
           dummy.position.y += push * (still ? -.5 : 1) * (motion ? (.6 + .4 * Math.sin(t * 6 + k)) : 1);
         }
-        dummy.scale.setScalar(sensing * (.7 + .3 * Math.sin(f * Math.PI)));
+        dummy.scale.setScalar(sensing * (.7 + .3 * Math.sin(f * Math.PI)) * (li === I104 ? 1.15 : .75));
         dummy.updateMatrix();
         particles.setMatrixAt(n++, dummy.matrix);
       }
@@ -1280,9 +1298,9 @@ export function createWorld(canvas, labelEls = []) {
     const plan = Math.max(between(p, .22, .3) * (1 - between(p, .4, .46)), between(p, .8, .85) * (1 - between(p, .93, .96)));
     labelEls.forEach((el, i) => {
       const r = labelRooms[i];
-      projected.set(r.x, FLOOR + WALL_H * walls.scale.y + .45, r.z).project(camera);
+      projected.set(r.x, r.sensor ? NODE_Y + .17 : r.router ? ROUTER.y + .55 : FLOOR + WALL_H * walls.scale.y + .45, r.z).project(camera);
       const is104 = r.n === 104;
-      let o = is104 ? Math.max(plan, focus) : plan;
+      let o = r.sensor ? sensorShot : r.router ? sensing * Math.max(plan, between(p, .3, .34) * (1 - between(p, .44, .48))) : is104 ? Math.max(plan, focus) : plan;
       if (projected.z > 1) o = 0;
       el.style.opacity = o.toFixed(3);
       el.style.transform = `translate(${((projected.x + 1) / 2 * width).toFixed(1)}px, ${((1 - projected.y) / 2 * height).toFixed(1)}px) translate(-50%, -50%)`;
@@ -1301,7 +1319,7 @@ export function createWorld(canvas, labelEls = []) {
     m.position.copy(hit.point).addScaledVector(normal, .03);
     m.lookAt(hit.point.clone().add(normal));
     m.userData.born = clock;
-    nodes.forEach(g => { if (g.scale.x > .2 && g.position.distanceTo(hit.point) < 2.6) g.userData.flash = clock; });
+    nodes.forEach(g => { if (g.scale.x > .2 && g.position.distanceTo(hit.point) < 2.2) g.userData.flash = clock; });
   }
 
   return { render, ping, resize };

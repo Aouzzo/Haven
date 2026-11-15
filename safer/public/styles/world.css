@@ -67,3 +67,5 @@
   .room-tile{min-height:64px;padding:9px}
 }
 @media (prefers-reduced-motion:reduce){.room-tile.alert{animation:none}.signal-hit{animation:none}}
+
+.room-label.router-label{background:#30352fe6;color:#f3e3c2;font-weight:500}

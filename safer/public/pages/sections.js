@@ -32,7 +32,7 @@ const competitors = [
 ];
 
 const aiSteps = [
-  ['01 / SENSE', 'Wi-Fi readings', 'Three ESP32 boards measure how the Wi-Fi signal between them changes (CSI). Every half second, Haven sums up the last 1.5 seconds: the shape of the signal across subcarriers, how much it spreads, and how fast it changes.'],
+  ['01 / SENSE', 'Wi-Fi readings', 'ESP32 sensors measure how the Wi-Fi signal reaching them changes (CSI); our demo room used three boards. Every half second, Haven sums up the last 1.5 seconds: the shape of the signal across subcarriers, how much it spreads, and how fast it changes.'],
   ['02 / TEACH', 'The camera labels', 'During training only, a webcam runs Google’s MediaPipe Pose in the browser. It finds the body’s joints and reads torso angle, hip movement and knee angle to name what the person is doing: empty, standing, walking, sitting, lying, or a fall. Only that one word leaves the browser.'],
   ['03 / LEARN', 'Wi-Fi learns from it', 'Each Wi-Fi window is paired with the camera’s label. A machine-learning model (k-nearest neighbours on standardized signal features) learns which Wi-Fi patterns go with which activity, then is tested on recordings it never trained on.'],
   ['04 / DETECT', 'Camera removed', 'The webcam is unplugged. Haven now runs on Wi-Fi alone. A sudden change followed by lying still means a possible fall; if the person stays down, staff get the room, the time and how long there has been no movement.']
@@ -45,7 +45,7 @@ export function productSection() {
   return `<section id="sensor" class="product-intro page-width" aria-labelledby="sensor-title">
     <span class="eyebrow">THE HAVEN SENSOR</span>
     <h2 id="sensor-title">Everything it needs.<br><em>Nothing it doesn’t.</em></h2>
-    <p>Each room gets three of these. Our own enclosure, designed and modeled at the hackathon around the ESP32 boards in our demo.</p>
+    <p>One per room, plugged into a wall outlet. It listens to the Wi-Fi router the building already has. Our own enclosure, designed and modeled at the hackathon around the ESP32 boards in our demo.</p>
     <span class="scroll-cue" aria-hidden="true">SCROLL TO ASSEMBLE ↓</span>
   </section>
   <section class="assembly" aria-label="Animated assembly of the Haven sensor enclosure">

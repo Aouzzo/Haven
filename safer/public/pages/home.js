@@ -3,7 +3,7 @@ import { storySections, productSection } from './sections.js';
 import { CHAPTERS, ROOMS, ALERT_TIME } from '../cinematic/story.js';
 
 export function home() {
-  const labels = ROOMS.map(r => `<span class="room-label signal-target" data-room="${r.n}">Room ${r.n}</span>`).join('');
+  const labels = ROOMS.map(r => `<span class="room-label signal-target" data-room="${r.n}">Room ${r.n}</span>`).join('') + `<span class="room-label router-label" data-router="1">Building Wi-Fi router</span>` + `<span class="room-label router-label sensor-label" data-sensor="1">Haven sensor · Room 104</span>`;
   const tiles = ROOMS.map(r => r.n === 104
     ? `<div class="room-tile alert signal-target" data-room="104"><b>104</b><span class="tile-status">Possible fall</span><small>No movement <span class="dash-timer">0:00</span></small></div>`
     : `<div class="room-tile signal-target" data-room="${r.n}"><b>${r.n}</b><span class="tile-status">${r.status}</span></div>`).join('');
