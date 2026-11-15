@@ -266,3 +266,27 @@ body.present .slide-problem{order:1}body.present #demo{order:2}body.present .sli
 body.present .meadow:not(.footer-scene),body.present .quote-slot,body.present #business .card-grid,body.present #customers .fine-print{display:none}
 body.present .info-section{display:flex;flex-direction:column;justify-content:center}
 @media (max-width:760px){.live-steps{grid-template-columns:1fr}}
+
+/* ---------- THEME: Signal (branch theme/signal) ---------- */
+.signal-rail{position:fixed;left:0;top:0;width:120px;height:100vh;z-index:25;pointer-events:none}
+.meadow:not(.footer-scene){display:none}
+.footer-scene canvas{display:none}
+.footer-scene{height:200px;background:var(--ink)}
+.footer-mark{color:#f3ead8}
+.dark-band{background:var(--ivory);color:var(--graphite)}
+.dark-band .info-head p,.dark-band .fine-print,.how-steps span,.big-stats span,.pipeline span,.link-meters div{color:#555a51}
+.dark-band h2 em{color:#3aa387}
+.big-stats b{color:var(--graphite)}
+.big-stats div:first-child b{color:#3aa387}
+.big-stats{border-color:var(--line)}
+.pipeline div{border-color:var(--line);background:var(--paper)}
+.pipeline path{stroke:#3aa387}
+.how-steps i{border-color:var(--line);color:#3aa387}
+.fireflies-bg{display:none}
+.link-meters b{background:var(--line)}
+.word-stat{color:var(--amber) !important}
+.info-section,.dark-band .page-width,.device-stage{padding-left:max(6%,130px)}
+.marquee{background:#3aa387;color:#fff}
+.info-nav a.active{background:#3aa387}
+@media (max-width:760px){.signal-rail{width:40px;opacity:.6}.info-section,.dark-band .page-width,.device-stage{padding-left:6%}}
+body.present .signal-rail{display:none}

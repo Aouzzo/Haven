@@ -8,6 +8,7 @@ import { mountDevice } from './cinematic/device.js';
 import { mountRoom, mountFireflies } from './cinematic/room.js';
 import { mountMeadows } from './cinematic/meadow.js';
 import { mountPresent } from './cinematic/present.js';
+import { mountSignal } from './cinematic/signal.js';
 
 const path = location.pathname.replace(/\/$/, '') || '/';
 document.body.dataset.page = path === '/' ? 'home' : path.slice(1);
@@ -27,6 +28,7 @@ if (path === '/') {
   safe('fireflies', () => mountFireflies(document.querySelector('.fireflies-bg')));
   safe('meadows', () => mountMeadows());
   safe('present', () => mountPresent());
+  safe('signal', () => mountSignal());
 }
 mountCursor({ onPing: (x, y) => dispatchEvent(new CustomEvent('haven:ping', { detail: { x, y } })) });
 
