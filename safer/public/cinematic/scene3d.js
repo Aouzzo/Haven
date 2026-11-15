@@ -1,6 +1,9 @@
 // Haven 3D world: a single-story care wing built from simple shapes (no downloaded models or images).
 // Everything is driven by scroll progress p (0..1) passed to render(p, seconds).
 import * as THREE from '../vendor/three.module.min.js';
+import { GLTFLoader } from '../vendor/addons/loaders/GLTFLoader.js';
+import { RGBELoader } from '../vendor/addons/loaders/RGBELoader.js';
+import { DRACOLoader } from '../vendor/addons/loaders/DRACOLoader.js';
 import { ROOMS } from './story.js';
 
 const clamp = n => Math.min(1, Math.max(0, n));
@@ -34,7 +37,8 @@ const NODE_FACING = [Math.PI / 2, -Math.PI / 2, Math.PI];
 
 const TEAL = new THREE.Color(0x7fe3c6), CORAL = new THREE.Color(0xf08a6c), AMBER = new THREE.Color(0xf2c27a);
 
-export function createWorld(canvas, labelEls = []) {
+export function createWorld(canvas, labelEls = [], { look = 'stylized' } = {}) {
+  const photo = look === 'photo';
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.75));
   renderer.shadowMap.enabled = true;
@@ -45,7 +49,8 @@ export function createWorld(canvas, labelEls = []) {
 
   const scene = new THREE.Scene();
   scene.fog = new THREE.Fog(0xd9a98e, 60, 175);
-  const camera = new THREE.PerspectiveCamera(36, 1, .1, 400);
+  const camera = new THREE.PerspectiveCamera(36, 1, .1, 900);
+  window.__haven = { scene, camera, renderer };   // handy for debugging in the console
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 
   // Dusk lighting: warm low sun, cool fill, sky/ground bounce.
@@ -76,7 +81,9 @@ export function createWorld(canvas, labelEls = []) {
   const woods = [0xc49a6c, 0xbf9466, 0xc9a173, 0xc29868, 0xc79d70, 0xbd9263].map(c => std(c));
 
   const pick = []; // meshes the cursor ripple can land on
-  function mesh(geo, mat, x = 0, y = 0, z = 0, parent = scene, cast = true) {
+  const styl = new THREE.Group(); // everything that only belongs to the stylized look
+  scene.add(styl);
+  function mesh(geo, mat, x = 0, y = 0, z = 0, parent = styl, cast = true) {
     const m = new THREE.Mesh(geo, mat);
     m.position.set(x, y, z);
     m.castShadow = cast;
@@ -87,7 +94,7 @@ export function createWorld(canvas, labelEls = []) {
   const box = (w, h, d, mat, x, y, z, parent) => mesh(new THREE.BoxGeometry(w, h, d), mat, x, y, z, parent);
 
   // ---------- Landscape ----------
-  const ground = mesh(new THREE.CircleGeometry(170, 64), M.grass, 0, 0, 0, scene, false);
+  const ground = mesh(new THREE.CircleGeometry(170, 64), M.grass, 0, 0, 0, styl, false);
   ground.rotation.x = -Math.PI / 2;
   pick.push(ground);
 
@@ -112,7 +119,7 @@ export function createWorld(canvas, labelEls = []) {
     const g = new THREE.Group();
     g.position.set(x, 0, z);
     g.scale.setScalar(s);
-    scene.add(g);
+    styl.add(g);
     mesh(new THREE.CylinderGeometry(.12, .18, 1.2, 6), M.trunk, 0, .6, 0, g);
     if (rnd() < .55) {
       for (let k = 0; k < 3; k++) mesh(new THREE.ConeGeometry(1.25 - k * .3, 1.6, 7), M.pine, 0, 1.5 + k * .85, 0, g);
@@ -130,13 +137,13 @@ export function createWorld(canvas, labelEls = []) {
   }
   for (let i = 0; i < 14; i++) {
     const a = (115 + i * 16 + rnd() * 10) * Math.PI / 180, r = 120 + rnd() * 30, ht = 9 + rnd() * 12;
-    const m = mesh(new THREE.ConeGeometry(18 + rnd() * 16, ht, 7), M.mountain, Math.cos(a) * r, ht / 2 - 1, Math.sin(a) * r, scene, false);
+    const m = mesh(new THREE.ConeGeometry(18 + rnd() * 16, ht, 7), M.mountain, Math.cos(a) * r, ht / 2 - 1, Math.sin(a) * r, styl, false);
     m.rotation.y = rnd() * 3;
   }
 
   // ---------- Building ----------
   const bldg = new THREE.Group();
-  scene.add(bldg);
+  styl.add(bldg);
   pick.push(box(14, FLOOR, 10.9, M.stone, 0, FLOOR / 2, 0, bldg));
   ROOMS.forEach((r, i) => pick.push(box(4.4 - T, .04, 4.2 - T, woods[i], r.x, FLOOR + .02, r.z, bldg)));
   pick.push(box(13.2, .04, 2, M.corridor, 0, FLOOR + .02, 0, bldg));
@@ -311,6 +318,113 @@ export function createWorld(canvas, labelEls = []) {
   const raycaster = new THREE.Raycaster(), ndc = new THREE.Vector2();
   const visible = o => { for (; o; o = o.parent) if (!o.visible) return false; return true; };
 
+  // ---------- Photoreal look: baked models from blender/build_scene.py ----------
+  const photoWalls = new THREE.Group(), photoWallsInner = new THREE.Group(), photoRoof = new THREE.Group();
+  const photoRoofMats = [];
+  photoWalls.position.y = FLOOR;
+  photoWallsInner.position.y = -FLOOR;
+  photoWalls.add(photoWallsInner);
+  let ready = Promise.resolve();
+  if (photo) {
+    styl.visible = false;
+    renderer.shadowMap.enabled = false;
+    renderer.toneMappingExposure = 1.0;
+    scene.add(photoWalls, photoRoof);
+    ready = buildPhoto();
+  }
+  async function buildPhoto() {
+    const base = '/assets/photo/';
+    const manifest = await (await fetch(base + 'manifest.json')).json();
+    const gltf = new GLTFLoader(), texLoader = new THREE.TextureLoader();
+    gltf.setDRACOLoader(new DRACOLoader().setDecoderPath('/vendor/addons/libs/draco/'));
+    const loadTex = url => new Promise((res, rej) => texLoader.load(url, res, undefined, rej));
+    const [sky, env] = await Promise.all([
+      loadTex(base + 'sky.jpg'),
+      new Promise((res, rej) => new RGBELoader().load(base + 'sky_1k.hdr', res, undefined, rej))
+    ]);
+    sky.mapping = THREE.EquirectangularReflectionMapping;
+    sky.colorSpace = THREE.SRGBColorSpace;
+    scene.background = sky;
+    env.mapping = THREE.EquirectangularReflectionMapping;
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromEquirectangular(env).texture;
+    env.dispose();
+    // Haze colour = the sky just above the horizon, so the lawn fades into it.
+    const cv = document.createElement('canvas'); cv.width = 64; cv.height = 32;
+    const cx = cv.getContext('2d'); cx.drawImage(sky.image, 0, 0, 64, 32);
+    const row = cx.getImageData(0, 14, 64, 2).data; let r = 0, gg = 0, b = 0;
+    for (let i = 0; i < row.length; i += 4) { r += row[i]; gg += row[i + 1]; b += row[i + 2]; }
+    const n = row.length / 4;
+    scene.fog = new THREE.Fog(new THREE.Color().setRGB(r / n / 255, gg / n / 255, b / n / 255, THREE.SRGBColorSpace), 70, 420);
+    renderer.toneMappingExposure = .95;
+    // Live-lit things (resident, sensors, plants) get a sun that matches the baked one.
+    const sd = manifest.sun;
+    sun.position.set(sd[0] * 40, sd[1] * 40 + 4, sd[2] * 40);
+    sun.intensity = 1.6;
+    fill.intensity = 0;
+    scene.children.filter(o => o.isHemisphereLight).forEach(h => { h.intensity = .35; });
+
+    const parents = { base: scene, walls: photoWallsInner, roof: photoRoof, furniture: scene, ground: scene };
+    await Promise.all(Object.entries(manifest.groups).map(async ([name, g]) => {
+      const model = await gltf.loadAsync(base + g.model);
+      model.scene.traverse(o => {
+        if (!o.isMesh) return;
+        const src = o.material;
+        const lm = src.emissiveMap;   // the baked lightmap rides in the emissive slot (UV1), see build_scene.py
+        const glow = /glass|lampshade/.test(src.name);
+        o.material = glow
+          ? new THREE.MeshBasicMaterial({ color: src.name.includes('glass') ? new THREE.Color(2.4, 1.55, .85) : new THREE.Color(2.6, 2.2, 1.6), transparent: name === 'roof' })
+          : new THREE.MeshBasicMaterial({ map: src.map, color: src.map ? 0xffffff : src.color, lightMap: lm, lightMapIntensity: Math.PI * manifest.lmScale,
+              alphaTest: src.alphaTest || 0, transparent: name === 'roof', side: src.side });
+        o.material.name = src.name;
+        if (name === 'roof') photoRoofMats.push(o.material);
+        pick.push(o);
+        if (src.map) src.map.anisotropy = renderer.capabilities.getMaxAnisotropy();
+        if (name === 'ground' && src.map && src.name.startsWith('grass')) {
+          // Endless lawn beyond the baked disc, tinted to the disc's average lighting.
+          const far = src.map.clone();
+          far.wrapS = far.wrapT = THREE.RepeatWrapping;
+          far.repeat.set(480, 480);
+          far.needsUpdate = true;
+          const tint = Math.min(1.2, g.mean * 1.1);
+          const lawn = new THREE.Mesh(new THREE.PlaneGeometry(1200, 1200), new THREE.MeshBasicMaterial({ map: far, color: new THREE.Color(tint, tint, tint) }));
+          lawn.rotation.x = -Math.PI / 2;
+          lawn.position.y = -.02;
+          scene.add(lawn);
+        }
+      });
+      parents[name].add(model.scene);
+    }));
+    // Trees and shrubs: one model each, cloned into place, lit live by the sky.
+    await Promise.all(Object.values(manifest.instances || {}).map(async inst => {
+      if (inst.sprite) {
+        // Trees: a path-traced cutout from Blender, drawn as camera-facing sprites.
+        const tex = await loadTex(base + inst.sprite);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        const smat = new THREE.SpriteMaterial({ map: tex, alphaTest: .4, fog: true });
+        inst.places.forEach(([x, y, z, ry, sc]) => {
+          const sp = new THREE.Sprite(smat);
+          sp.center.set(.5, inst.baseOffset);
+          sp.scale.setScalar(inst.size * sc);
+          sp.position.set(x, y, z);
+          scene.add(sp);
+        });
+        return;
+      }
+      const model = await gltf.loadAsync(base + inst.model);
+      model.scene.traverse(o => {
+        if (o.isMesh) { o.material.alphaTest = .5; o.material.side = THREE.DoubleSide; o.material.envMapIntensity = .9; }
+      });
+      inst.places.forEach(([x, y, z, ry, sc]) => {
+        const c = model.scene.clone();
+        c.position.set(x, y, z);
+        c.rotation.y = ry;
+        c.scale.setScalar(sc);
+        scene.add(c);
+      });
+    }));
+  }
+
   // ---------- Camera ----------
   const posCurve = new THREE.CatmullRomCurve3(KEYS.map(k => V3(...k[1])));
   const lookCurve = new THREE.CatmullRomCurve3(KEYS.map(k => V3(...k[2])));
@@ -371,6 +485,10 @@ export function createWorld(canvas, labelEls = []) {
     roofMats.forEach(m => { m.opacity = fade; m.depthWrite = fade > .95; });
     roof.visible = fade > .01;
     walls.scale.y = 1 - .5 * lift;
+    photoRoof.position.y = lift * lift * 6;
+    photoRoof.visible = fade > .01;
+    photoRoofMats.forEach(m => { m.opacity = fade; m.depthWrite = fade > .95; });
+    photoWalls.scale.y = walls.scale.y;
 
     // Story state
     const walk = clamp((p - .47) / .13);
@@ -493,5 +611,5 @@ export function createWorld(canvas, labelEls = []) {
     nodes.forEach(g => { if (g.scale.x > .2 && g.position.distanceTo(hit.point) < 2.6) g.userData.flash = clock; });
   }
 
-  return { render, ping, resize };
+  return { render, ping, resize, ready };
 }

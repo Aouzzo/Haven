@@ -12,9 +12,12 @@ document.title = path === '/technology' ? 'The Technology — Haven' : path === 
 if (path === '/') {
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   window.scrollTo(0, 0);
-  const timeline = mountTimeline();
-  timeline.ready();
-  document.querySelector('.asset-status').classList.add('loaded');
+  const look = new URLSearchParams(location.search).get('look') === 'photo' ? 'photo' : 'stylized';
+  document.body.dataset.look = look;
+  document.querySelectorAll('.look-toggle a').forEach(a => a.toggleAttribute('aria-current', a.dataset.look === look));
+  if (look === 'photo') document.querySelector('.photo-poster').src = '/assets/photo/hero_poster.jpg';
+  const timeline = mountTimeline({ look });
+  timeline.ready().then(() => document.querySelector('.asset-status').classList.add('loaded'));
 }
 mountCursor({ onPing: (x, y) => dispatchEvent(new CustomEvent('haven:ping', { detail: { x, y } })) });
 

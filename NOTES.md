@@ -6,6 +6,7 @@ Read `ReadME.md` (project context and honesty rules) and `safer/README.md` (site
 - Live pitch site = `safer/public/` (static, no build). Deployed by Vercel from `main` to https://haven-public-ten.vercel.app. Run locally: `python safer/serve.py`, then open http://127.0.0.1:4173.
 - 3D hero merged into `main` on 2026-11-14 (from branch `feature/3d-hero`) and live: replaced the AI-image hero with an interactive Three.js 3D scene and a scroll flight path into Room 104 that shows a simulated fall alert and caregiver dashboard. Added a Wi-Fi cursor effect on all pages.
 - Info sections merged into `main` on 2026-11-14 (from `feature/info-sections`) and live: Demo video, Business, Customers, Competition and Privacy sections below the 3D story, in `safer/public/pages/sections.js` + `styles/sections.css`. Numbers come from the team pitch deck (Google Drive "Haven Pitch.pptx"). Set the demo video in `DEMO_VIDEO` in `safer/public/cinematic/story.js`.
+- Branch `feature/photoreal` (not merged): a Photoreal look for the 3D story, switchable with the Stylized / Photoreal toggle in the hero (or `/?look=photo`). Built and lit in Blender, Cycles lighting baked into lightmaps, loaded as Draco GLBs. Pipeline and rebuild steps: `blender/README.md`. Output: `safer/public/assets/photo/` (~25 MB).
 - Key files: `safer/public/cinematic/{story,scene3d,timeline,cursor}.js`, `safer/public/styles/world.css`, `safer/public/vendor/three.module.min.js`.
 
 ## Decisions

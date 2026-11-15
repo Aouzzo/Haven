@@ -56,7 +56,15 @@
 .signal-hit{animation:signalHit .75s ease-out}
 @keyframes signalHit{0%{box-shadow:0 0 0 0 #f0c47a99;filter:brightness(1.12)}100%{box-shadow:0 0 0 14px #f0c47a00;filter:none}}
 
+.look-toggle{position:absolute;top:186px;right:4.5%;z-index:12;display:flex;padding:3px;border-radius:999px;background:#1e231e66;border:1px solid #ffffff44;backdrop-filter:blur(6px)}
+.look-toggle a{font-size:11px;letter-spacing:.06em;color:#fff8eacc;padding:6px 12px;border-radius:999px}
+.look-toggle a[aria-current]{background:#fff8ea;color:#30352f}
+.photo-poster{display:none}
+body[data-look="photo"] .photo-poster{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;filter:blur(2px) brightness(.85)}
+body[data-look="photo"] .asset-status{color:#fffaf0;background:#1f241f;text-shadow:0 2px 20px #0008;isolation:isolate}
+body[data-look="photo"] .asset-status span{color:#fffaf0cc}
 @media (max-width:760px){
+  .look-toggle{top:auto;bottom:140px;right:6%}
   .cinema-scroll{height:640svh}
   .cinema[data-chapter="0"] .caption-title{font-size:38px}
   .sim-badge{top:auto;bottom:96px;right:6%}

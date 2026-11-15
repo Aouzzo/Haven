@@ -39,7 +39,7 @@ function makeTrace(canvas) {
   };
 }
 
-export function mountTimeline() {
+export function mountTimeline({ look = 'stylized' } = {}) {
   const q = s => document.querySelector(s);
   const cinema = q('.cinema'), scroll = q('.cinema-scroll');
   const caption = q('.scene-caption'), csiPanel = q('.csi-panel'), csiState = q('.csi-state');
@@ -140,9 +140,9 @@ export function mountTimeline() {
   });
 
   return {
-    ready() {
+    async ready() {
       try {
-        world = createWorld(q('.world'), labels);
+        world = createWorld(q('.world'), labels, { look });
         addEventListener('haven:ping', e => world.ping(e.detail.x, e.detail.y));
       } catch (error) {
         console.warn('3D scene unavailable, showing overlays only.', error);
@@ -152,6 +152,7 @@ export function mountTimeline() {
       update();
       current = target;
       requestAnimationFrame(frame);
+      if (world) await world.ready.catch(error => console.error('Photoreal assets failed to load', error));
     }
   };
 }
