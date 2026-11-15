@@ -5,6 +5,7 @@ Read `ReadME.md` (project context and honesty rules) and `safer/README.md` (site
 ## Current state (2026-11-14)
 - Live pitch site = `safer/public/` (static, no build). Deployed by Vercel from `main` to https://haven-public-ten.vercel.app. Run locally: `python safer/serve.py`, then open http://127.0.0.1:4173.
 - 3D hero merged into `main` on 2026-11-14 (from branch `feature/3d-hero`) and live: replaced the AI-image hero with an interactive Three.js 3D scene and a scroll flight path into Room 104 that shows a simulated fall alert and caregiver dashboard. Added a Wi-Fi cursor effect on all pages.
+- Branch `feature/info-sections` (not merged): Demo video, Business, Customers, Competition and Privacy sections below the 3D story, in `safer/public/pages/sections.js` + `styles/sections.css`. Numbers come from the team pitch deck (Google Drive "Haven Pitch.pptx"). Set the demo video in `DEMO_VIDEO` in `safer/public/cinematic/story.js`.
 - Key files: `safer/public/cinematic/{story,scene3d,timeline,cursor}.js`, `safer/public/styles/world.css`, `safer/public/vendor/three.module.min.js`.
 
 ## Decisions
@@ -16,6 +17,9 @@ Read `ReadME.md` (project context and honesty rules) and `safer/README.md` (site
 - Do new website work on a feature branch; merge into `main` only after the team approves (merging deploys).
 - Possibly replace the hallway image on `/technology` and `/login` with 3D renders or real photos of the hardware.
 - Once the detector works, swap the simulated CSI trace for real recorded data, labeled REPLAY or LIVE.
+
+## Still to fill in on the site
+- Demo video (`DEMO_VIDEO`), real customer quotes (Customers section), fall-detection result (deck has it blank), confirm $20/room price (labeled working assumption). Deck says to open each source and confirm numbers before presenting.
 
 ## Gotchas
 - Pushing to `main` redeploys the public site.

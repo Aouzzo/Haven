@@ -114,7 +114,15 @@ export function mountTimeline() {
     requestAnimationFrame(frame);
   }
 
-  function update() { if (enabled) target = clamp(scrollY / range()); }
+  function update() {
+    if (enabled) target = clamp(scrollY / range());
+    header.classList.toggle('solid', scrollY > scroll.offsetHeight - 110);
+  }
+  // Fade the info sections in as they scroll into view.
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .12 }) : null;
+  document.querySelectorAll('.reveal-on-scroll').forEach(el => io ? io.observe(el) : el.classList.add('in'));
   function jump(progress) { window.scrollTo({ top: progress * range(), behavior: reducedMotion.matches ? 'instant' : 'smooth' }); }
   chapters.forEach((b, i) => b.addEventListener('click', () => jump(CHAPTERS[i].at)));
   q('.replay-button').addEventListener('click', () => { jump(0); chapters[0].focus({ preventScroll: true }); resetAck(); });
