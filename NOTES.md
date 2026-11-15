@@ -25,3 +25,10 @@ Read `ReadME.md` (project context and honesty rules) and `safer/README.md` (site
 ## Gotchas
 - Pushing to `main` redeploys the public site.
 - Story timings live in three places: `KEYS` in `scene3d.js`, `between(...)` ranges in `scene3d.js` / `timeline.js`, and chapter `at`/`until` values in `story.js`. Keep them in step.
+
+## Overnight work (2026-11-15, branch `overnight/website-polish`, NOT merged)
+Team asked for this to stay on a branch; merge it yourselves before noon if you like it.
+- New sections below the 3D story: Device (scroll-scrubbed exploded view of the real sensor case, frames copied from the Hackathon repo `exploded-view` branch into `safer/public/assets/device/`), How it works (interactive room simulation, `cinematic/room.js`), The AI (real LOTO results + honest limits), Demo, Customers, Business (ROI calculator), Competition (matrix), Privacy, Team, meadow dividers and dusk footer (`cinematic/meadow.js`).
+- Motion layer: `cinematic/fx.js` (word reveals, staggered reveals, count-ups, card spotlight/tilt, magnetic buttons, active pill nav, ROI calculator). Fonts self-hosted: Fraunces + Inter (`assets/fonts/`, SIL OFL).
+- **Presentation mode**: "Present" button in the header, the P key, or `/?present`. Next = → ↓ Space PageDown (clickers); back = ← ↑ PageUp; Home/End; F fullscreen; Esc exit. HUD shows slide n/N, slide name and a timer that turns coral after 4:00. Stops = the six 3D story chapters + every `[data-slide]` element. Present-only slides (mock-ups to edit) are in `safer/public/pages/present.js`; their order is set by `body.present ... { order: n }` rules at the end of `styles/sections.css`.
+- Review notes from a separate reviewer agent: `notes/overnight-review.md` (if present).
