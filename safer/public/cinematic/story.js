@@ -19,3 +19,7 @@ export const ROOMS = [
 ];
 
 export const ALERT_TIME = '7:42 PM';
+
+// Demo video for the section below the story. Leave '' to show the "coming soon" frame.
+// Use a local file (put it in /assets/video/, e.g. '/assets/video/haven-demo.mp4') or a YouTube link.
+export const DEMO_VIDEO = '';

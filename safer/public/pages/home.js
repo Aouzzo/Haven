@@ -1,4 +1,5 @@
-import { header, shield, arrow } from '../components/brand.js';
+import { header, footer, shield, arrow } from '../components/brand.js';
+import { storySections } from './sections.js';
 import { CHAPTERS, ROOMS, ALERT_TIME } from '../cinematic/story.js';
 
 export function home() {
@@ -7,7 +8,7 @@ export function home() {
     ? `<div class="room-tile alert signal-target" data-room="104"><b>104</b><span class="tile-status">Possible fall</span><small>No movement <span class="dash-timer">0:00</span></small></div>`
     : `<div class="room-tile signal-target" data-room="${r.n}"><b>${r.n}</b><span class="tile-status">${r.status}</span></div>`).join('');
   const nav = CHAPTERS.map((c, i) => `<button data-index="${i}" aria-label="Scene ${i + 1}: ${c.name}"${i ? '' : ' aria-current="step"'}><i></i><span>${c.name}</span></button>`).join('');
-  return `${header(true)}<main id="main" class="cinema-scroll" aria-label="Haven 3D concept demonstration"><section class="cinema" data-chapter="0" aria-label="Scroll to explore the Haven concept">
+  return `${header(true)}<main id="main"><div class="cinema-scroll" aria-label="Haven 3D concept demonstration"><section class="cinema" data-chapter="0" aria-label="Scroll to explore the Haven concept">
     <canvas class="world" role="img" aria-label="3D model of a single-story assisted living wing at dusk. Scrolling flies the camera into Room 104, where a simulated fall alert plays out."></canvas>
     <div class="room-labels" aria-hidden="true">${labels}</div>
     <div class="scene-shade"></div>
@@ -25,5 +26,5 @@ export function home() {
     <div class="cinema-bottom"><div class="scroll-instruction"><span class="scroll-line"></span><span>SCROLL TO EXPLORE</span></div><nav class="chapter-nav" aria-label="Story chapters">${nav}</nav><span class="simulation-label"><span></span> SIMULATED · NOT LIVE SENSOR DATA</span></div>
     <div class="timeline-track" aria-hidden="true"><i></i></div><p class="sr-only scene-announcement" aria-live="polite">Scene 1 of ${CHAPTERS.length}: A quieter kind of care. Scroll or use the chapter buttons to explore.</p>
     <div class="asset-status" role="status">Preparing your experience<span>Building the 3D scene</span></div>
-  </section></main>`;
+  </section></div>${storySections()}</main>${footer()}`;
 }
