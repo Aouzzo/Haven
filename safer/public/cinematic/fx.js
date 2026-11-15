@@ -6,6 +6,15 @@ const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 function splitWords(el) {
   if (el.dataset.split) return;
   el.dataset.split = '1';
+  // keep punctuation glued to the word before it (e.g. "<em>night shift</em>." must not wrap the dot)
+  [...el.querySelectorAll('em')].forEach(em => {
+    const n = em.nextSibling;
+    if (n && n.nodeType === 3 && /^[.,!?;:]/.test(n.textContent)) {
+      const m = n.textContent.match(/^[.,!?;:]+/)[0];
+      em.append(m);
+      n.textContent = n.textContent.slice(m.length);
+    }
+  });
   let i = 0;
   const walk = node => {
     [...node.childNodes].forEach(n => {
