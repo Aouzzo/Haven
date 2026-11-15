@@ -1,7 +1,8 @@
-import { home, sceneAssets } from './pages/home.js';
+import { home } from './pages/home.js';
 import { technology } from './pages/technology.js';
 import { login } from './pages/login.js';
 import { mountTimeline } from './cinematic/timeline.js';
+import { mountCursor } from './cinematic/cursor.js';
 
 const path = location.pathname.replace(/\/$/, '') || '/';
 document.body.dataset.page = path === '/' ? 'home' : path.slice(1);
@@ -12,21 +13,11 @@ if (path === '/') {
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   window.scrollTo(0, 0);
   const timeline = mountTimeline();
-  const loading = document.querySelector('.asset-status');
-  Promise.all(sceneAssets.map(src => new Promise((resolve, reject) => {
-    const image = new Image();
-    image.onload = () => image.decode().then(resolve, resolve);
-    image.onerror = () => reject(new Error(`Scene could not load: ${src}`));
-    image.src = src;
-  }))).then(() => {
-    loading.classList.add('loaded');
-    timeline.ready();
-  }).catch(error => {
-    console.error(error);
-    loading.innerHTML = 'A scene could not load.<span>Check the local assets, then reload.</span><button type="button">Try again</button>';
-    loading.querySelector('button').addEventListener('click', () => location.reload());
-  });
+  timeline.ready();
+  document.querySelector('.asset-status').classList.add('loaded');
 }
+mountCursor({ onPing: (x, y) => dispatchEvent(new CustomEvent('haven:ping', { detail: { x, y } })) });
+
 document.querySelector('#request-demo')?.addEventListener('click', event => {
   const note = document.querySelector('#contact-placeholder');
   note.hidden = !note.hidden;
