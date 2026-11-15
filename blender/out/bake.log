@@ -1,0 +1,280 @@
+00:04.469  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library
+C:\Users\lscheibe\Desktop\Haven-website\blender\build_scene.py:109: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  world.use_nodes = True
+C:\Users\lscheibe\Desktop\Haven-website\blender\build_scene.py:180: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+Cycles device: OPTIX
+sky sun elevation deg 4.6142578125 roll 0.2119140625
+20:29:23 | INFO: Data are loaded, start creating Blender stuff
+20:29:23 | INFO: Blender create Mesh node nightstand.024
+20:29:23 | INFO: Blender create Mesh node nightstand.025
+20:29:23 | INFO: glTF import finished in 0.06s
+20:29:23 | INFO: Data are loaded, start creating Blender stuff
+20:29:23 | INFO: Blender create Mesh node Cube.007
+20:29:23 | INFO: glTF import finished in 0.10s
+20:29:23 | INFO: Data are loaded, start creating Blender stuff
+20:29:23 | INFO: Blender create Mesh node Circle
+20:29:23 | INFO: Blender create Mesh node Circle.001
+20:29:23 | INFO: Blender create Mesh node low.008
+20:29:23 | INFO: glTF import finished in 0.25s
+20:29:24 | INFO: Data are loaded, start creating Blender stuff
+20:29:24 | INFO: Blender create Mesh node nightstand.024
+20:29:24 | INFO: Blender create Mesh node nightstand.025
+20:29:24 | INFO: glTF import finished in 0.03s
+20:29:24 | INFO: Data are loaded, start creating Blender stuff
+20:29:24 | INFO: Blender create Mesh node Cube.007
+20:29:24 | INFO: glTF import finished in 0.05s
+20:29:24 | INFO: Data are loaded, start creating Blender stuff
+20:29:24 | INFO: Blender create Mesh node Circle
+20:29:24 | INFO: Blender create Mesh node Circle.001
+20:29:24 | INFO: Blender create Mesh node low.008
+20:29:24 | INFO: glTF import finished in 0.21s
+20:29:24 | INFO: Data are loaded, start creating Blender stuff
+20:29:24 | INFO: Blender create Mesh node nightstand.024
+20:29:24 | INFO: Blender create Mesh node nightstand.025
+20:29:24 | INFO: glTF import finished in 0.03s
+20:29:24 | INFO: Data are loaded, start creating Blender stuff
+20:29:24 | INFO: Blender create Mesh node Cube.007
+20:29:24 | INFO: glTF import finished in 0.05s
+20:29:24 | INFO: Data are loaded, start creating Blender stuff
+20:29:24 | INFO: Blender create Mesh node Circle
+20:29:24 | INFO: Blender create Mesh node Circle.001
+20:29:24 | INFO: Blender create Mesh node low.008
+20:29:25 | INFO: glTF import finished in 0.21s
+20:29:25 | INFO: Data are loaded, start creating Blender stuff
+20:29:25 | INFO: Blender create Mesh node nightstand.024
+20:29:25 | INFO: Blender create Mesh node nightstand.025
+20:29:25 | INFO: glTF import finished in 0.03s
+20:29:25 | INFO: Data are loaded, start creating Blender stuff
+20:29:25 | INFO: Blender create Mesh node Cube.007
+20:29:25 | INFO: glTF import finished in 0.05s
+20:29:25 | INFO: Data are loaded, start creating Blender stuff
+20:29:25 | INFO: Blender create Mesh node Circle
+20:29:25 | INFO: Blender create Mesh node Circle.001
+20:29:25 | INFO: Blender create Mesh node low.008
+20:29:25 | INFO: glTF import finished in 0.22s
+20:29:25 | INFO: Data are loaded, start creating Blender stuff
+20:29:25 | INFO: Blender create Mesh node nightstand.024
+20:29:25 | INFO: Blender create Mesh node nightstand.025
+20:29:25 | INFO: glTF import finished in 0.03s
+20:29:26 | INFO: Data are loaded, start creating Blender stuff
+20:29:26 | INFO: Blender create Mesh node Cube.007
+20:29:26 | INFO: glTF import finished in 0.05s
+20:29:26 | INFO: Data are loaded, start creating Blender stuff
+20:29:26 | INFO: Blender create Mesh node Circle
+20:29:26 | INFO: Blender create Mesh node Circle.001
+20:29:26 | INFO: Blender create Mesh node low.008
+20:29:26 | INFO: glTF import finished in 0.24s
+20:29:26 | INFO: Data are loaded, start creating Blender stuff
+20:29:26 | INFO: Blender create Mesh node nightstand.024
+20:29:26 | INFO: Blender create Mesh node nightstand.025
+20:29:26 | INFO: glTF import finished in 0.04s
+20:29:26 | INFO: Data are loaded, start creating Blender stuff
+20:29:26 | INFO: Blender create Mesh node Cube.007
+20:29:26 | INFO: glTF import finished in 0.06s
+20:29:26 | INFO: Data are loaded, start creating Blender stuff
+20:29:26 | INFO: Blender create Mesh node Circle
+20:29:26 | INFO: Blender create Mesh node Circle.001
+20:29:26 | INFO: Blender create Mesh node low.008
+20:29:27 | INFO: glTF import finished in 0.21s
+20:29:27 | INFO: Data are loaded, start creating Blender stuff
+20:29:27 | INFO: Blender create Mesh node Plane.063
+20:29:27 | INFO: glTF import finished in 0.13s
+model shrub_04 tris 27327
+20:29:27 | INFO: Data are loaded, start creating Blender stuff
+20:29:27 | INFO: Blender create Mesh node BezierCurve.002
+20:29:35 | INFO: glTF import finished in 8.36s
+00:47.469  render           | Saved: 'C:\Users\lscheibe\Desktop\Haven-website\safer\public\assets\photo\hero_poster.jpg'
+model tree_small_02 tris 2062487
+baking base 282 faces
+Info: Baking map saved to internal image, save it externally or pack it
+baking walls 1242 faces
+Info: Baking map saved to internal image, save it externally or pack it
+baking roof 171 faces
+Info: Baking map saved to internal image, save it externally or pack it
+baking furniture 108906 faces
+Info: Baking map saved to internal image, save it externally or pack it
+baking ground 1170 faces
+Info: Baking map saved to internal image, save it externally or pack it
+INFO Draco is available, use library at C:\Users\lscheibe\AppData\Local\Programs\blender-5.3.0-windows-x64\blender.shared\bf_intern_draco_bridge.dll
+INFO MeshOptimizer is available, use library at C:\Users\lscheibe\AppData\Local\Programs\blender-5.3.0-windows-x64\blender.shared\bf_intern_meshopt_bridge.dll
+20:33:53 | INFO: Starting glTF 2.0 export
+20:33:53 | INFO: Extracting primitive: plinth
+20:33:53 | INFO: Primitives created: 7
+20:33:54 | INFO: Draco encoder: Encoding mesh base.
+20:33:54 | INFO: Finished glTF 2.0 export in 0.48963069915771484 s
+
+20:33:54 | INFO: Starting glTF 2.0 export
+20:33:54 | INFO: Extracting primitive: wall
+20:33:54 | INFO: Primitives created: 4
+20:33:54 | INFO: Draco encoder: Encoding mesh walls.
+20:33:54 | INFO: Finished glTF 2.0 export in 0.25153613090515137 s
+
+20:33:54 | INFO: Starting glTF 2.0 export
+20:33:54 | INFO: Extracting primitive: roofprism
+20:33:54 | INFO: Primitives created: 6
+20:33:54 | INFO: Draco encoder: Encoding mesh roof.
+20:33:54 | INFO: Finished glTF 2.0 export in 0.241652250289917 s
+
+20:33:54 | INFO: Starting glTF 2.0 export
+20:33:54 | INFO: Extracting primitive: bedframe
+20:33:55 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:33:55 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:33:56 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:33:56 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:33:56 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:33:56 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:33:57 | INFO: Primitives created: 41
+20:33:57 | INFO: Draco encoder: Encoding mesh furniture.
+Blender 5.3.0 (hash 02f0899d78e3 built 2026-11-10 01:33:43)
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 24 vertices, 36 indices, raw size: 1032, encoded size: 435, compression ratio: 2.37
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 144 vertices, 216 indices, raw size: 6192, encoded size: 1175, compression ratio: 5.27
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 24 vertices, 36 indices, raw size: 1032, encoded size: 420, compression ratio: 2.46
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 24 vertices, 36 indices, raw size: 1032, encoded size: 441, compression ratio: 2.34
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 216 vertices, 324 indices, raw size: 9288, encoded size: 1975, compression ratio: 4.70
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 648 vertices, 972 indices, raw size: 27864, encoded size: 4244, compression ratio: 6.57
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 48 vertices, 72 indices, raw size: 2064, encoded size: 550, compression ratio: 3.75
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 1296 vertices, 1944 indices, raw size: 55728, encoded size: 6920, compression ratio: 8.05
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 240 vertices, 360 indices, raw size: 10320, encoded size: 1641, compression ratio: 6.29
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 2328 vertices, 3492 indices, raw size: 100104, encoded size: 12959, compression ratio: 7.72
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 1104 vertices, 1656 indices, raw size: 47472, encoded size: 7281, compression ratio: 6.52
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 18 vertices, 24 indices, raw size: 768, encoded size: 401, compression ratio: 1.92
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 48 vertices, 72 indices, raw size: 2064, encoded size: 649, compression ratio: 3.18
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 264 vertices, 396 indices, raw size: 11352, encoded size: 2189, compression ratio: 5.19
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 216 vertices, 324 indices, raw size: 9288, encoded size: 1929, compression ratio: 4.81
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 24 vertices, 36 indices, raw size: 1032, encoded size: 429, compression ratio: 2.41
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 144 vertices, 264 indices, raw size: 6288, encoded size: 1143, compression ratio: 5.50
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 2592 vertices, 3888 indices, raw size: 111456, encoded size: 15169, compression ratio: 7.35
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 2592 vertices, 3888 indices, raw size: 111456, encoded size: 16047, compression ratio: 6.95
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 216 vertices, 324 indices, raw size: 9288, encoded size: 1786, compression ratio: 5.20
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 1728 vertices, 3384 indices, raw size: 75888, encoded size: 9795, compression ratio: 7.75
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 576 vertices, 1080 indices, raw size: 25200, encoded size: 3195, compression ratio: 7.89
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 864 vertices, 1656 indices, raw size: 37872, encoded size: 5750, compression ratio: 6.59
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 595 vertices, 1410 indices, raw size: 26620, encoded size: 6064, compression ratio: 4.39
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 1212 vertices, 2562 indices, raw size: 53604, encoded size: 12953, compression ratio: 4.14
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 952 vertices, 3321 indices, raw size: 44682, encoded size: 9973, compression ratio: 4.48
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 19936 vertices, 39012 indices, raw size: 875424, encoded size: 193805, compression ratio: 4.52
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 4058 vertices, 7056 indices, raw size: 176352, encoded size: 42688, compression ratio: 4.13
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 216 vertices, 324 indices, raw size: 9288, encoded size: 1803, compression ratio: 5.15
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 595 vertices, 1410 indices, raw size: 26620, encoded size: 6060, compression ratio: 4.39
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 1212 vertices, 2562 indices, raw size: 53604, encoded size: 12957, compression ratio: 4.14
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 952 vertices, 3321 indices, raw size: 44682, encoded size: 9965, compression ratio: 4.48
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 19936 vertices, 39012 indices, raw size: 875424, encoded size: 193833, compression ratio: 4.52
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 4058 vertices, 7056 indices, raw size: 176352, encoded size: 42680, compression ratio: 4.13
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 216 vertices, 324 indices, raw size: 9288, encoded size: 1798, compression ratio: 5.17
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 595 vertices, 1410 indices, raw size: 26620, encoded size: 6064, compression ratio: 4.39
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 1212 vertices, 2562 indices, raw size: 53604, encoded size: 12955, compression ratio: 4.14
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 952 vertices, 3321 indices, raw size: 44682, encoded size: 9976, compression ratio: 4.48
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 19936 vertices, 39012 indices, raw size: 875424, encoded size: 193774, compression ratio: 4.52
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 4058 vertices, 7056 indices, raw size: 176352, encoded size: 42682, compression ratio: 4.13
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 216 vertices, 324 indices, raw size: 9288, encoded size: 1805, compression ratio: 5.15
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 588 vertices, 1410 indices, raw size: 26340, encoded size: 6001, compression ratio: 4.39
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 1203 vertices, 2562 indices, raw size: 53244, encoded size: 12836, compression ratio: 4.15
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 961 vertices, 3321 indices, raw size: 45002, encoded size: 10087, compression ratio: 4.46
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 19936 vertices, 39012 indices, raw size: 875424, encoded size: 193782, compression ratio: 4.52
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 4058 vertices, 7056 indices, raw size: 176352, encoded size: 42691, compression ratio: 4.13
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 216 vertices, 324 indices, raw size: 9288, encoded size: 1833, compression ratio: 5.07
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 588 vertices, 1410 indices, raw size: 26340, encoded size: 5997, compression ratio: 4.39
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 1203 vertices, 2562 indices, raw size: 53244, encoded size: 12828, compression ratio: 4.15
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 961 vertices, 3321 indices, raw size: 45002, encoded size: 10077, compression ratio: 4.47
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 19936 vertices, 39012 indices, raw size: 875424, encoded size: 193829, compression ratio: 4.52
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 4058 vertices, 7056 indices, raw size: 176352, encoded size: 42681, compression ratio: 4.13
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | En20:33:57 | INFO: Finished glTF 2.0 export in 2.9656474590301514 s
+
+20:33:57 | INFO: Starting glTF 2.0 export
+20:33:57 | INFO: Extracting primitive: ground
+20:33:57 | INFO: Primitives created: 4
+20:33:57 | INFO: Draco encoder: Encoding mesh ground.
+20:33:57 | INFO: Finished glTF 2.0 export in 0.1341872215270996 s
+
+20:33:57 | INFO: Data are loaded, start creating Blender stuff
+20:33:57 | INFO: Blender create Mesh node Plane.063
+20:33:58 | INFO: glTF import finished in 0.14s
+20:33:58 | INFO: Starting glTF 2.0 export
+20:33:58 | INFO: Extracting primitive: Plane.001
+20:33:58 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:33:58 | INFO: Primitives created: 1
+20:33:58 | INFO: Draco encoder: Encoding mesh shrub_04.015.
+20:33:58 | INFO: Finished glTF 2.0 export in 0.4464085102081299 s
+
+20:33:58 | INFO: Data are loaded, start creating Blender stuff
+20:33:58 | INFO: Blender create Mesh node BezierCurve.002
+20:34:09 | INFO: glTF import finished in 11.36s
+05:09.282  render           | Saved: 'C:\Users\lscheibe\Desktop\Haven-website\safer\public\assets\photo\tree_small_02_sprite.png'
+DONE {"lmScale": 2.0, "sun": [-0.4357515275478363, 0.22495105862617493, 0.8715030550956726], "groups": {"base": {"lightmap": "lm_base.jpg", "model": "base.glb", "mean": 0.11670348793268204}, "walls": {"lightmap": "lm_walls.jpg", "model": "walls.glb", "mean": 0.32044973969459534}, "roof": {"lightmap": "lm_roof.jpg", "model": "roof.glb", "mean": 0.3060985207557678}, "furniture": {"lightmap": "lm_furniture.jpg", "model": "furniture.glb", "mean": 0.11224212497472763}, "ground": {"lightmap": "lm_ground.jpg", "model": "ground.glb", "mean": 0.5264109373092651}}, "instances": {"shrub_04": {"model": "shrub_04.glb", "places": [[-5.300000000000001, 0.3, 6.2, 0.0, 1.6], [-4.4, 0.3, 6.2, 1.7, 1.6], [-3.500000000000001, 0.3, 6.2, 3.4, 1.6], [-0.9, 0.3, 6.2, 0.0, 1.6], [0.0, 0.3, 6.2, 1.7, 1.6], [0.9, 0.3, 6.2, 3.4, 1.6], [3.5000000000000004, 0.3, 6.2, 0.0, 1.6], [4.4, 0.3, 6.2, 1.7, 1.6], [5.300000000000001, 0.3, 6.2, 3.4, 1.6], [8.899999999999999, 0, 1.9, 0.0, 2.6], [8.899999999999999, 0, -1.9, 1.1, 2.6], [-7.699999999999999, 0, 4.4, 2.2, 2.6], [-7.699999999999999, 0, -3.5, 3.3000000000000003, 2.6], [-2.2, 0, -6.4, 4.4, 2.6], [3.6, 0, -6.4, 5.5, 2.6]], "tris": 27327}, "tree_small_02": {"sprite": "tree_small_02_sprite.png", "places": [[-14, 0, -11, 0.0, 1.0], [11, 0, -15, 2.3, 1.15], [-21, 0, 4, 4.6, 1.3], [21, 0, -5, 6.8999999999999995, 1.0], [-8, 0, -19, 9.2, 1.15], [4, 0, -21, 11.5, 1.3], [-25, 0, -9, 13.799999999999999, 1.0], [-18, 0, 15, 16.099999999999998, 1.15], [25, 0, 8, 18.4, 1.3], [-11, 0, 12, 20.7, 1.0], [16, 0, -10, 23.0, 1.15], [-3, 0, -14, 25.299999999999997, 1.3], [8, 0, -11, 27.599999999999998, 1.0], [-17, 0, -3, 29.9, 1.15], [28, 0, -14, 32.199999999999996, 1.3], [-30, 0, 2, 34.5, 1.0], [-39.20153682305814, 0, 13.00146046078149, 2.4951669284472904, 1.2084805895616872], [-26.162476970889422, 0, 43.60435869406289, 5.783116771452629, 1.660316646047066], [14.414718869980824, 0, -42.73615997147461, 3.3810840515013254, 1.2936778504090152], [-34.49694173822919, 0, 22.885459726483557, 1.3507227252471738, 1.7492329419996424], [35.62903717507721, 0, -52.94010519256598, 5.042821382820687, 1.2354049326134682], [-58.05964202453418, 0, 0.6445159559670455, 4.610936665935923, 1.698253850593943], [29.43576080012551, 0, -28.215869881932388, 3.816866867435243, 1.5701910195615314], [-30.11301945374136, 0, -31.653747542654536, 2.9836036917864144, 1.1625423450857733], [56.48912602286393, 0, -33.53917858678511, 3.4501248783984395, 1.3101720177013274], [45.051863029115786, 0, -33.790412029363395, 5.558598611236377, 1.6936308617565443], [-34.94374464385498, 0, -37.48486688818346, 3.7731485747969336, 1.401730112105315], [-38.50237405847537, 0, 28.26527754567544, 5.11933160739811, 1.130266928350574], [-25.551206693812713, 0, 52.11671202441708, 1.7667292331821778, 1.4742352564155956], [-38.538237545518456, 0, -30.2152539150127, 6.282856907284308, 1.236901446033321], [-40.617126282143786, 0, -18.144012204007794, 3.98578938528342, 1.2934133844717783], [-60.885324955068256, 0, -11.173868390947337, 2.0202140904733743, 1.4909702885083744], [32.50651779173093, 0, -25.364342439545716, 0.3881445248531078, 1.2602086081671353], [18.439139278639885, 0, -54.66786759890548, 1.495728169899553, 1.3317468967602144], [-44.49114984381255, 0, 28.224566654838192, 0.26971048302672374, 1.5881043170230629], [52.531002911182576, 0, -44.04334259752482, 4.6297311257857325, 1.7719073141290658], [-15.666690033316613, 0, 44.574854422611544, 6.085842568899174, 1.6426676046576039], [-62.52928246732884, 0, -27.191936224984705, 3.909215970220233, 1.672549460488777], [-43.984291572154234, 0, 3.5246288255240574, 2.7980961087314085, 1.1955063385891405], [-65.91418027099368, 0, -19.640240930446147, 2.087235543954874, 1.1065775264376954], [-18.867188332466387, 0, 39.113415971040034, 4.937597751374536, 1.3539069868477411], [-40.93021131764117, 0, 3.811235489504652, 6.1850164920508215, 1.3967667634902214], [-36.13117945661274, 0, 16.925048900510575, 0.3482049386491249, 1.218069189912635], [-1.9122853103451578, 0, -42.745744236299544, 0.25762190998531287, 1.4434673309912203], [-67.46986739778225, 0, 18.363941699663222, 0.7703215230968431, 1.4704691104966043], [18.0703904662206, 0, -47.79639259749635, 6.222241522831074, 1.4344333741161295], [-48.91757614998139, 0, 14.911811561983603, 0.23227586433356562, 1.3948546730760594], [-64.09012010064214, 0, 17.580411691380856, 5.235596851699312, 1.4490058036997695], [-17.728705509459353, 0, 42.59868199536387, 1.527051481692239, 1.2456458452390202], [-62.07467038783345, 0, 21.918415839643618, 0.8927211370139467, 1.135891607580467], [47.42621545951918, 0, -29.949223446962083, 6.240595494130005, 1.382073446168964], [45.94253839398319, 0, -36.901114930455535, 4.9824036532589835, 1.6213083999481221], [-29.65718125684927, 0, -28.27091322795239, 1.3288041551302705, 1.7116643592760963], [52.48210180173475, 0, -42.58592154119204, 2.1205143821693166, 1.5598362999399031], [26.477276932715075, 0, -52.23221824426884, 5.133404878869143, 1.4696167249282197], [-8.202871329310375, 0, -59.38687701555658, 1.6902839879150895, 1.7459599738905376], [36.44867029024974, 0, -17.379678474399803, 6.1178561476209, 1.7732416722141409], [-3.1588217732808026, 0, -39.29865855529917, 5.663509248220462, 1.1893429513035283], [54.81184153475721, 0, -22.761671946078234, 0.3810436053686097, 1.2170859298221537], [-12.219215207750059, 0, -54.87049209358789, 4.7029157090445945, 1.7492366624870122], [-35.191435435419066, 0, 14.612797227346134, 5.810880558844489, 1.1091771939918869], [29.66768866669856, 0, -29.31595933109339, 5.102195757251583, 1.6480788116660658]], "size": 4.647875785008073, "baseOffset": 0.00980392156862744}}}
+coded 216 vertices, 324 indices, raw size: 9288, encoded size: 1775, compression ratio: 5.23
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 588 vertices, 1410 indices, raw size: 26340, encoded size: 5995, compression ratio: 4.39
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 1203 vertices, 2562 indices, raw size: 53244, encoded size: 12826, compression ratio: 4.15
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 961 vertices, 3321 indices, raw size: 45002, encoded size: 10085, compression ratio: 4.46
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 19936 vertices, 39012 indices, raw size: 875424, encoded size: 193834, compression ratio: 4.52
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 4058 vertices, 7056 indices, raw size: 176352, encoded size: 42692, compression ratio: 4.13
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 128 vertices, 378 indices, raw size: 5876, encoded size: 1480, compression ratio: 3.97
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 3456 vertices, 5184 indices, raw size: 148608, encoded size: 23607, compression ratio: 6.30
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 648 vertices, 972 indices, raw size: 27864, encoded size: 4134, compression ratio: 6.74
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 72 vertices, 108 indices, raw size: 3096, encoded size: 753, compression ratio: 4.11
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 18285 vertices, 81981 indices, raw size: 749082, encoded size: 122494, compression ratio: 6.12
+
+Blender quit

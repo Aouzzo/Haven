@@ -1,0 +1,93 @@
+00:06.172  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library
+C:\Users\lscheibe\Desktop\Haven-website\blender\build_scene.py:109: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  world.use_nodes = True
+C:\Users\lscheibe\Desktop\Haven-website\blender\build_scene.py:180: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+Cycles device: OPTIX
+sky sun elevation deg 4.6142578125 roll 0.2119140625
+20:21:10 | INFO: Data are loaded, start creating Blender stuff
+20:21:10 | INFO: Blender create Mesh node nightstand.024
+20:21:10 | INFO: Blender create Mesh node nightstand.025
+20:21:11 | INFO: glTF import finished in 0.07s
+20:21:11 | INFO: Data are loaded, start creating Blender stuff
+20:21:11 | INFO: Blender create Mesh node Cube.007
+20:21:11 | INFO: glTF import finished in 0.12s
+20:21:11 | INFO: Data are loaded, start creating Blender stuff
+20:21:11 | INFO: Blender create Mesh node Circle
+20:21:11 | INFO: Blender create Mesh node Circle.001
+20:21:11 | INFO: Blender create Mesh node low.008
+20:21:11 | INFO: glTF import finished in 0.35s
+20:21:11 | INFO: Data are loaded, start creating Blender stuff
+20:21:11 | INFO: Blender create Mesh node nightstand.024
+20:21:11 | INFO: Blender create Mesh node nightstand.025
+20:21:11 | INFO: glTF import finished in 0.04s
+20:21:11 | INFO: Data are loaded, start creating Blender stuff
+20:21:11 | INFO: Blender create Mesh node Cube.007
+20:21:11 | INFO: glTF import finished in 0.08s
+20:21:11 | INFO: Data are loaded, start creating Blender stuff
+20:21:11 | INFO: Blender create Mesh node Circle
+20:21:11 | INFO: Blender create Mesh node Circle.001
+20:21:11 | INFO: Blender create Mesh node low.008
+20:21:12 | INFO: glTF import finished in 0.29s
+20:21:12 | INFO: Data are loaded, start creating Blender stuff
+20:21:12 | INFO: Blender create Mesh node nightstand.024
+20:21:12 | INFO: Blender create Mesh node nightstand.025
+20:21:12 | INFO: glTF import finished in 0.04s
+20:21:12 | INFO: Data are loaded, start creating Blender stuff
+20:21:12 | INFO: Blender create Mesh node Cube.007
+20:21:12 | INFO: glTF import finished in 0.07s
+20:21:12 | INFO: Data are loaded, start creating Blender stuff
+20:21:12 | INFO: Blender create Mesh node Circle
+20:21:12 | INFO: Blender create Mesh node Circle.001
+20:21:12 | INFO: Blender create Mesh node low.008
+20:21:12 | INFO: glTF import finished in 0.29s
+20:21:12 | INFO: Data are loaded, start creating Blender stuff
+20:21:12 | INFO: Blender create Mesh node nightstand.024
+20:21:12 | INFO: Blender create Mesh node nightstand.025
+20:21:12 | INFO: glTF import finished in 0.04s
+20:21:12 | INFO: Data are loaded, start creating Blender stuff
+20:21:12 | INFO: Blender create Mesh node Cube.007
+20:21:12 | INFO: glTF import finished in 0.07s
+20:21:12 | INFO: Data are loaded, start creating Blender stuff
+20:21:12 | INFO: Blender create Mesh node Circle
+20:21:12 | INFO: Blender create Mesh node Circle.001
+20:21:12 | INFO: Blender create Mesh node low.008
+20:21:13 | INFO: glTF import finished in 0.29s
+20:21:13 | INFO: Data are loaded, start creating Blender stuff
+20:21:13 | INFO: Blender create Mesh node nightstand.024
+20:21:13 | INFO: Blender create Mesh node nightstand.025
+20:21:13 | INFO: glTF import finished in 0.04s
+20:21:13 | INFO: Data are loaded, start creating Blender stuff
+20:21:13 | INFO: Blender create Mesh node Cube.007
+20:21:13 | INFO: glTF import finished in 0.08s
+20:21:13 | INFO: Data are loaded, start creating Blender stuff
+20:21:13 | INFO: Blender create Mesh node Circle
+20:21:13 | INFO: Blender create Mesh node Circle.001
+20:21:13 | INFO: Blender create Mesh node low.008
+20:21:13 | INFO: glTF import finished in 0.30s
+20:21:13 | INFO: Data are loaded, start creating Blender stuff
+20:21:13 | INFO: Blender create Mesh node nightstand.024
+20:21:13 | INFO: Blender create Mesh node nightstand.025
+20:21:13 | INFO: glTF import finished in 0.06s
+20:21:13 | INFO: Data are loaded, start creating Blender stuff
+20:21:13 | INFO: Blender create Mesh node Cube.007
+20:21:13 | INFO: glTF import finished in 0.09s
+20:21:13 | INFO: Data are loaded, start creating Blender stuff
+20:21:13 | INFO: Blender create Mesh node Circle
+20:21:13 | INFO: Blender create Mesh node Circle.001
+20:21:13 | INFO: Blender create Mesh node low.008
+20:21:14 | INFO: glTF import finished in 0.31s
+20:21:14 | INFO: Data are loaded, start creating Blender stuff
+20:21:14 | INFO: Blender create Mesh node Plane.063
+20:21:14 | INFO: glTF import finished in 0.18s
+model shrub_04 tris 27327
+20:21:14 | INFO: Data are loaded, start creating Blender stuff
+20:21:14 | INFO: Blender create Mesh node Circle.010
+20:21:15 | INFO: glTF import finished in 0.67s
+model shrub_01 tris 156012
+20:21:15 | INFO: Data are loaded, start creating Blender stuff
+20:21:15 | INFO: Blender create Mesh node BezierCurve.002
+20:21:25 | INFO: glTF import finished in 10.18s
+00:56.203  render           | Saved: 'C:\Users\lscheibe\Desktop\Haven-website\safer\public\assets\photo\hero_poster.jpg'
+Blender 5.3.0 (hash 02f0899d78e3 built 2026-11-10 01:33:43)
+model tree_small_02 tris 2062487
