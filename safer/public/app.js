@@ -3,6 +3,10 @@ import { mountTimeline } from './cinematic/timeline.js';
 import { mountCursor } from './cinematic/cursor.js';
 import { mountAssembly } from './components/assembly.js';
 import { ASSEMBLY_FRAMES } from './pages/sections.js';
+import { mountFx } from './cinematic/fx.js';
+import { mountValley } from './cinematic/valley.js';
+// One failing extra must never take the page down.
+const safe = (name, fn) => { try { fn(); } catch (e) { console.warn(`[haven] ${name} failed`, e); } };
 
 if (['/login', '/technology'].includes(location.pathname.replace(/\/$/, ''))) history.replaceState(null, '', '/');   // removed pages land on home
 const path = location.pathname.replace(/\/$/, '') || '/';
@@ -18,5 +22,7 @@ if (path === '/') {
   document.querySelector('.asset-status').classList.add('loaded');
   const assembly = document.querySelector('.assembly');
   if (assembly) mountAssembly(assembly, ASSEMBLY_FRAMES);
+  safe('fx', () => mountFx());
+  safe('valley', () => mountValley(document.querySelector('.valley-footer')));
 }
 mountCursor({ onPing: (x, y) => dispatchEvent(new CustomEvent('haven:ping', { detail: { x, y } })) });

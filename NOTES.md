@@ -2,6 +2,15 @@
 
 Read `ReadME.md` (project context and honesty rules) and `safer/README.md` (site structure) first.
 
+## Branch feature/site-additions-v2 (2026-11-15, Luis + Claude Code)
+Built on Anthony's main (3761a81). Only these changes, as Luis asked: headline word-by-word reveals and
+count-up stats (`cinematic/fx.js`), team section + dusk valley/lodge footer (`pages/additions.js`,
+`cinematic/valley.js`), self-hosted Fraunces/Inter (`assets/fonts/`, `styles/additions.css`), stability
+(3D frame try/catch + skip after hero in `timeline.js`, third quality tier in `scene3d.js`, each extra mounted
+in its own try in `app.js`), HIPAA line removed, demo stats from Hackathon repo `esp32/data/experiments.md`
+(95% held-out best placement, 0/12 false alarms, 18/20 lie-downs alerted, 3 s alert). Older branch
+`feature/site-additions` also has the banner, Wi-Fi room and How-we-made-it section, not used here.
+
 ## Current state (2026-11-14)
 - Live pitch site = `safer/public/` (static, no build). Deployed by Vercel from `main` to https://haven-public-ten.vercel.app. Run locally: `python safer/serve.py`, then open http://127.0.0.1:4173.
 - 3D hero merged into `main` on 2026-11-14 (from branch `feature/3d-hero`) and live: replaced the AI-image hero with an interactive Three.js 3D scene and a scroll flight path into Room 104 that shows a simulated fall alert and caregiver dashboard. Added a Wi-Fi cursor effect on all pages.

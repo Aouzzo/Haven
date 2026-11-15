@@ -109,7 +109,8 @@ export function mountTimeline() {
     current = reducedMotion.matches ? target : current + (target - current) * (1 - Math.exp(-dt / 110));
     if (Math.abs(target - current) < .00005) current = target;
     const t = time / 1000;
-    if (world) world.render(current, t);
+    // Skip the 3D scene once it's scrolled away; a failed frame never stops the page.
+    if (world && scrollY < scroll.offsetHeight + innerHeight) { try { world.render(current, t); } catch (error) { console.error('3D frame failed', error); } }
     overlays(current, t);
     requestAnimationFrame(frame);
   }

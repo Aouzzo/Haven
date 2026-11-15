@@ -2,6 +2,7 @@
 // competition, privacy. Copy comes from the team's research notes and real conversations.
 // Anything not decided yet is labeled, never invented.
 import { DEMO_VIDEO } from '../cinematic/story.js';
+import { teamSection, valleyFooter } from './additions.js';
 
 const tag = (text, kind = '') => `<span class="info-tag ${kind}">${text}</span>`;
 
@@ -93,8 +94,8 @@ export function storySections() {
   <section id="demo" class="info-section page-width reveal-on-scroll">
     <div class="info-head"><span class="eyebrow">02 / DEMO</span><h2>See it in a <em>real room</em>.</h2><p>Three small Wi-Fi sensors in a normal room. A person walks in, falls, and doesn’t get up. No camera, nothing worn, no button pressed. Haven sees a sudden change in the signal, then stillness, and the caregiver gets the alert.</p></div>
     ${video()}
-    <div class="stat-row"><div class="stat signal-target"><b>~96%</b><span>of activities identified correctly in rooms the model was trained in, across repeated training runs</span></div><div class="stat signal-target"><b>6</b><span>activities it learns: empty, standing, walking, sitting, lying, and falling</span></div><div class="stat signal-target"><b>0</b><span>images used once it’s trained. Wi-Fi needs no light, so Haven works in the dark.</span></div></div>
-    <p class="fine-print">Our own recordings on our ESP32 boards, Nov 14, 2026. We trained and tested the model several times; each test used recordings held out from training, in the same room. A new room needs its own short training session first.</p>
+    <div class="stat-row"><div class="stat signal-target"><b>95%</b><span>of activities identified on a test the model never saw: empty room, standing, walking, and lying on the floor</span></div><div class="stat signal-target"><b>0</b><span>false alarms in 12 tests of everyday activity</span></div><div class="stat signal-target"><b>3 sec</b><span>on the floor before the alert fires. No camera, no light needed.</span></div></div>
+    <p class="fine-print">Our own recordings on our ESP32 boards, Nov 14, 2026: one room, one person. The model trained on three guided rounds and was scored on a fourth it never saw. In those tests 18 of 20 lie-downs raised an alert. 95% is our best sensor placement; three other placements scored 77–87%, which is why each room gets its own short training session. Falls were acted out by lying down on a mat; real falls have not been tested.</p>
   </section>
 
   <section id="ai" class="info-section page-width reveal-on-scroll">
@@ -152,10 +153,12 @@ export function storySections() {
       <article class="info-card signal-target"><span class="card-kicker">No identity</span><h3>Rooms, not people</h3><p>Alerts show a room number, the time, and minutes without movement. No names, photos or health records.</p></article>
       <article class="info-card signal-target"><span class="card-kicker">Training only</span><h3>Camera as teacher</h3><p>A webcam labels what’s happening only while we train the model. Then it’s removed, and Haven runs on Wi-Fi alone.</p></article>
       <article class="info-card signal-target"><span class="card-kicker">On site</span><h3>Local processing</h3><p>Signal analysis runs on the facility’s own equipment, so raw Wi-Fi data stays in the building.</p>${tag('Planned', 'pending')}</article>
-      <article class="info-card signal-target"><span class="card-kicker">Security</span><h3>Treated as health data</h3><p>Encrypted and handled with HIPAA-level care.</p>${tag('Planned', 'pending')}</article>
+      <article class="info-card signal-target"><span class="card-kicker">Security</span><h3>Treated as health data</h3><p>Alert data encrypted in transit and at rest.</p>${tag('Planned', 'pending')}</article>
       <article class="info-card signal-target"><span class="card-kicker">Honest claims</span><h3>An alerting aid</h3><p>Haven detects possible falls and alerts staff faster. It does not prevent falls or diagnose anything.</p></article>
     </div>
     <div class="info-cta"><span>Prototype. Not a medical device.</span></div>
   </section>
+  ${teamSection()}
+  ${valleyFooter()}
 </div>`;
 }
