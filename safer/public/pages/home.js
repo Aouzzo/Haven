@@ -14,7 +14,7 @@ export function home() {
     <div class="scene-shade"></div>
     <div class="sim-badge" title="This sequence is an animation, not live sensor data"><span></span>SIMULATED</div>
     <div class="drag-hint" aria-hidden="true">Drag to look around</div>
-    <div class="present-title" aria-hidden="true"><span>CAL POLY AI HACKATHON · NOVEMBER 2026</span><b>Jack Jensen · Anthony Ouzounian · Luis Scheibe</b></div>
+    <div class="present-title" aria-hidden="true"><span>CAL POLY AI HACKATHON · NOVEMBER 2026</span><b>Jack Jensen · Anthony Ouzounian · Luis Scheibe</b><em>Camera-free fall alerts that work in the dark.</em></div>
     <div class="scene-caption" aria-hidden="true"><span class="eyebrow caption-kicker">${CHAPTERS[0].kicker}</span><p class="caption-title">${CHAPTERS[0].title}</p><span class="caption-detail">${CHAPTERS[0].detail}</span></div>
     <aside class="csi-panel" aria-hidden="true"><div class="csi-head"><span>Wi-Fi signal (CSI) · Room 104</span><b class="csi-state">Quiet</b></div><canvas class="csi-canvas"></canvas><span class="csi-foot">Simulated trace · not live sensor data</span></aside>
     <div class="fall-alert" role="status" aria-live="polite"><div class="alert-symbol">!</div><div><span class="eyebrow">ROOM 104 · POSSIBLE FALL</span><h2>No movement <span class="still-timer">0:00</span></h2><p>Care team alerted · ${ALERT_TIME}</p></div></div>

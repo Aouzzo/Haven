@@ -3,6 +3,9 @@
 // Every element with data-slide becomes a stop for the arrow keys / clicker.
 
 export const TEAM = ['Jack Jensen', 'Anthony Ouzounian', 'Luis Scheibe'];
+// Paste the live dashboard address here (it is printed when the gateway viewer starts, e.g. http://127.0.0.1:49367/).
+// Leave '' to hide the button.
+export const LIVE_DASHBOARD_URL = '';
 
 export function presentSlides() {
   return {
@@ -24,6 +27,7 @@ export function presentSlides() {
         <span class="eyebrow">LIVE DEMO</span>
         <h2>Now, <em>for real</em>.</h2>
         <p class="slide-kicker">Three ESP32 boards on this table. The dashboard runs on this laptop.</p>
+        ${LIVE_DASHBOARD_URL ? `<a class="button primary live-open" href="${LIVE_DASHBOARD_URL}" target="_blank" rel="noopener">Open the live dashboard ↗</a>` : ''}
         <div class="live-steps"><div><b>1</b><span>Walk through the room</span></div><div><b>2</b><span>A teammate lies down on the mat</span></div><div><b>3</b><span>Watch the signal go still, and the alert</span></div></div>
       </div>
     </section>`,

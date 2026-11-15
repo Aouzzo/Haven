@@ -290,3 +290,5 @@ body.present .info-section{display:flex;flex-direction:column;justify-content:ce
 .info-nav a.active{background:#3aa387}
 @media (max-width:760px){.signal-rail{width:40px;opacity:.6}.info-section,.dark-band .page-width,.device-stage{padding-left:6%}}
 body.present .signal-rail{display:none}
+.present-title em{font-family:var(--serif);font-style:italic;font-size:18px;color:#f6dcae}
+.live-open{margin-top:26px}
