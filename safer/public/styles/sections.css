@@ -297,3 +297,5 @@ body{background:#10140f;color:#efe6d2}
 .reveal-content p,.reveal-footnote{color:#b8b1a1}
 .button.secondary{border-color:#3a443a;color:#efe6d2}
 .cinema{background:#070b1c}
+.present-title em{font-family:var(--serif);font-style:italic;font-size:18px;color:#f6dcae}
+.live-open{margin-top:26px}
