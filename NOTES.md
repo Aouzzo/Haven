@@ -37,5 +37,6 @@ Team asked for this to stay on a branch; merge it yourselves before noon if you 
 - Alternate looks to compare (each is the overnight branch plus a theme; merge only one):
   - `theme/night-shift`: night 3D scene (stars, moonlight, brighter windows) and dark sections.
   - `theme/signal`: cream sections with a live CSI waveform rail down the left edge that goes flat during the fall; no meadow.
+  - `theme/clinical`: white Swiss "clinical paper" layout, one typeface (Inter), hairline rules, no meadow; most credibility-first.
   To compare locally: `git checkout <branch>` then `python safer/serve.py` and open http://127.0.0.1:4173.
 
