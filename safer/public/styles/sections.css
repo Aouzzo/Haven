@@ -266,3 +266,6 @@ body.present .slide-problem{order:1}body.present #demo{order:2}body.present .sli
 body.present .meadow:not(.footer-scene),body.present .quote-slot,body.present #business .card-grid,body.present #customers .fine-print{display:none}
 body.present .info-section{display:flex;flex-direction:column;justify-content:center}
 @media (max-width:760px){.live-steps{grid-template-columns:1fr}}
+
+.present-title em{font-family:var(--serif);font-style:italic;font-size:18px;color:#f6dcae}
+.live-open{margin-top:26px}
