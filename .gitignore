@@ -11,3 +11,5 @@
 .env.*
 !.env.example
 .claude/launch.json
+blender/assets/
+blender/out/
