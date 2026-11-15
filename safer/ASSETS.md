@@ -1,5 +1,7 @@
 # Generated artwork and prompts
 
+> Update (3D hero branch): the home page no longer uses generated images. It is a Three.js scene built from simple shapes in code. `exterior.png` and both resident sprite sheets were removed; `hallway-empty.png` is still used on `/technology` and `/login`. The prompts below are kept for provenance.
+
 The four calls below used **built-in image generation**, not the CLI/API fallback. All selected assets are saved in `public/assets/scenes/`. The user-supplied art-direction reference is `../Safer Assisted Living, Smarter Care.png`; it is not displayed as a website background.
 
 ## Exterior — exterior.png
