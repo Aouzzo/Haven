@@ -72,7 +72,7 @@ export function mountCursor({ onPing } = {}) {
     ctx.clearRect(0, 0, w, h);
     for (let i = rings.length - 1; i >= 0; i--) {
       const r = rings[i];
-      const age = (now - r.born) / r.life;
+      const age = Math.max(0, (now - r.born) / r.life);
       if (age >= 1) { rings.splice(i, 1); continue; }
       const ease = 1 - Math.pow(1 - age, 3);
       const radius = 6 + ease * r.reach;

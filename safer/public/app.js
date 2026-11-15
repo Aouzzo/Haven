@@ -3,6 +3,8 @@ import { technology } from './pages/technology.js';
 import { login } from './pages/login.js';
 import { mountTimeline } from './cinematic/timeline.js';
 import { mountCursor } from './cinematic/cursor.js';
+import { mountAssembly } from './components/assembly.js';
+import { ASSEMBLY_FRAMES } from './pages/sections.js';
 
 const path = location.pathname.replace(/\/$/, '') || '/';
 document.body.dataset.page = path === '/' ? 'home' : path.slice(1);
@@ -15,11 +17,7 @@ if (path === '/') {
   const timeline = mountTimeline();
   timeline.ready();
   document.querySelector('.asset-status').classList.add('loaded');
+  const assembly = document.querySelector('.assembly');
+  if (assembly) mountAssembly(assembly, ASSEMBLY_FRAMES);
 }
 mountCursor({ onPing: (x, y) => dispatchEvent(new CustomEvent('haven:ping', { detail: { x, y } })) });
-
-document.querySelector('#request-demo')?.addEventListener('click', event => {
-  const note = document.querySelector('#contact-placeholder');
-  note.hidden = !note.hidden;
-  event.currentTarget.setAttribute('aria-expanded', String(!note.hidden));
-});

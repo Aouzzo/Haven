@@ -61,3 +61,32 @@
   .video-empty p{font-size:22px}
 }
 @media (prefers-reduced-motion:reduce){.reveal-on-scroll{opacity:1;transform:none;transition:none}}
+
+/* Haven sensor: scroll-scrubbed exploded view (components/assembly.js) */
+.product-intro{position:relative;z-index:1;background:var(--ivory);text-align:center;padding:140px 0 40px}
+.product-intro .eyebrow{color:var(--amber)}
+.product-intro h2{font-size:clamp(40px,5.4vw,70px);line-height:1.04;margin:18px 0 22px}
+.product-intro p{max-width:520px;margin:0 auto;font-size:15px;line-height:1.7;color:var(--muted)}
+.product-intro .scroll-cue{display:block;margin-top:34px;font-size:10px;letter-spacing:.2em;color:var(--muted)}
+.assembly{height:420vh;position:relative;z-index:1;background:var(--ivory)}
+.assembly-stage{position:sticky;top:0;height:100vh;overflow:hidden}
+.assembly-stage canvas{position:absolute;inset:4vh 0 0 0;width:100%;height:92vh}
+.assembly-caption{position:absolute;left:clamp(24px,7vw,110px);bottom:12vh;max-width:340px;margin:0;opacity:0;transform:translateY(12px);transition:opacity .45s ease,transform .45s ease}
+.assembly-caption.is-active{opacity:1;transform:none}
+.assembly-caption .eyebrow{color:var(--amber)}
+.assembly-caption strong{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.6vw,34px);letter-spacing:-.03em;margin-top:8px}
+@media (max-width:700px){.assembly{height:320vh}.assembly-stage canvas{inset:0;height:70vh;top:6vh}.assembly-caption{bottom:8vh;right:24px}.product-intro{padding:100px 0 20px}}
+@media (prefers-reduced-motion:reduce){.assembly-caption{transition:none;transform:none}}
+
+/* Photo of the facility we visited */
+.visit{display:grid;grid-template-columns:1.25fr 1fr;gap:28px;align-items:stretch;margin-top:18px}
+.visit-photo{position:relative;min-height:260px;border:1px dashed #c9c3b0;border-radius:14px;overflow:hidden;display:grid;place-items:center;text-align:center;color:var(--muted);font-size:13px;background:#efeadd}
+.visit-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.visit-photo span{display:block;font-size:10px;letter-spacing:.16em;margin-bottom:8px;color:var(--amber)}
+.visit .quote-slot{margin-top:0;flex-direction:column;align-items:flex-start;justify-content:center}
+@media (max-width:760px){.visit{grid-template-columns:1fr}}
+
+.visit-photos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.visit-photo{margin:0}
+.visit-photo img{object-position:50% 45%}
+@media (max-width:520px){.visit-photos{grid-template-columns:1fr}}
