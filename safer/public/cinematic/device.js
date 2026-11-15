@@ -42,6 +42,7 @@ export function mountDevice(section, { count = 48, src = i => `/assets/device/d$
   new IntersectionObserver(([e]) => {
     if (e.isIntersecting && !started) { started = true; for (let i = 0; i < count; i += 4) load(i); for (let i = 0; i < count; i++) load(i); }
   }, { rootMargin: '600px' }).observe(section);
+  setTimeout(() => { if (!started) { started = true; for (let i = 0; i < count; i++) load(i); } }, 5000);  // preload so presentation jumps never show a blank frame
   addEventListener('scroll', () => requestAnimationFrame(() => draw(false)), { passive: true });
   addEventListener('resize', resize);
   resize();

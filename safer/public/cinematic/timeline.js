@@ -68,8 +68,7 @@ export function mountTimeline() {
     }
     const seconds = p < .655 ? 0 : Math.floor(clamp((p - .655) / (.86 - .655)) * 74);
     const stamp = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
-    alertTimer.textContent = stamp;
-    dashTimer.textContent = stamp;
+    if (alertTimer.textContent !== stamp) { alertTimer.textContent = stamp; dashTimer.textContent = stamp; }
     opacity(alertCard, alertIn);
     alertCard.style.transform = `translateY(${reducedMotion.matches ? 0 : 14 * (1 - alertIn)}px)`;
     const dash = between(p, .8, .855) * (1 - between(p, .93, .97));
@@ -110,7 +109,7 @@ export function mountTimeline() {
     current = reducedMotion.matches ? target : current + (target - current) * (1 - Math.exp(-dt / 110));
     if (Math.abs(target - current) < .00005) current = target;
     const t = time / 1000;
-    if (world && scrollY < scroll.offsetHeight) world.render(current, t);   // skip the 3D scene once it's scrolled away
+    if (world && scrollY < scroll.offsetHeight) { try { world.render(current, t); } catch (error) { console.error('3D frame failed', error); } }   // skip the 3D scene once it's scrolled away
     overlays(current, t);
     requestAnimationFrame(frame);
   }

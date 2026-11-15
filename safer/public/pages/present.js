@@ -16,14 +16,15 @@ export function presentSlides() {
           <div><b data-count="36" data-suffix="%">0</b><span>of liability claims are falls, ~$245K each</span></div>
         </div>
         <p class="slide-kicker">Today’s alerts depend on the person pressing a button.</p>
+        <p class="fine-print">Sources: 528 Bavarian nursing homes (PubMed 21816682); ECRI “Managing Falls in Aging Services”; CNA Aging Services Claim Report via Skilled Nursing News (2022).</p>
       </div>
     </section>`,
     live: `<section class="present-only slide slide-live" data-slide="Live demo">
       <div class="page-width">
         <span class="eyebrow">LIVE DEMO</span>
         <h2>Now, <em>for real</em>.</h2>
-        <p class="slide-kicker">Three ESP32 boards in this room · switch to the live dashboard and phone alert.</p>
-        <div class="slide-placeholder">Space for a screenshot or embed of the live dashboard. Edit pages/present.js.</div>
+        <p class="slide-kicker">Three ESP32 boards on this table. The dashboard runs on this laptop.</p>
+        <div class="live-steps"><div><b>1</b><span>Walk through the room</span></div><div><b>2</b><span>A teammate lies down on the mat</span></div><div><b>3</b><span>Watch the signal go still, and the alert</span></div></div>
       </div>
     </section>`,
     next: `<section class="present-only slide slide-next" data-slide="What's next">

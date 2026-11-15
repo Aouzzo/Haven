@@ -25,15 +25,16 @@ const competitors = [
   ['Pendants and watches', 'Call buttons, smartwatches', 1, 0, 1, 1, 'Forgotten or taken off, and you still have to press'],
   ['Radar (mmWave)', 'Vayyar, Sensatec, Hikvision', 1, 1, 1, 0, '~$199–250 per device + $20–49/month*'],
   ['Thermal sensors', 'Butlr', 1, 1, 1, .5, 'A separate heat sensor in every room'],
-  ['Bed and chair mats', 'Various', 1, 1, 1, 1, 'Detect leaving the bed, not a fall']
+  ['Bed and chair mats', 'Various', 1, 1, 1, 1, 'Detect leaving the bed, not a fall'],
+  ['Other Wi-Fi sensing', 'Cognitive Systems, Origin Wireless', 1, 1, 1, .5, 'Motion sensing for homes; Haven targets care-facility fall alerts']
 ];
 const mark = v => v === 1 ? '<span class="yes" aria-label="yes">●</span>' : v === 0 ? '<span class="no" aria-label="no">○</span>' : '<span class="part" aria-label="partly">◐</span>';
 
 export function storySections() {
   const P = presentSlides();
   return `<div class="story-after">
-  <div class="marquee" aria-hidden="true"><div>${'<span>No cameras</span><span>No wearables</span><span>No buttons to press</span><span>Works in the dark</span><span>Rooms, not people</span><span>Alerts in seconds</span>'.repeat(4)}</div></div>
-  <nav class="info-nav" aria-label="More about Haven"><a href="#device">Device</a><a href="#how">How it works</a><a href="#ai">The AI</a><a href="#demo">Demo</a><a href="#customers">Customers</a><a href="#business">Business</a><a href="#competition">Competition</a><a href="#privacy">Privacy</a><a href="#team">Team</a></nav>
+  <div class="marquee" aria-hidden="true"><div>${'<span>No cameras</span><span>No wearables</span><span>No buttons to press</span><span>Works in the dark</span><span>Rooms, not people</span><span>Built to alert in seconds</span>'.repeat(4)}</div></div>
+  <nav class="info-nav" aria-label="More about Haven"><a href="#device">Device</a><a href="#how">How it works</a><a href="#ai">The AI</a>${DEMO_VIDEO ? '<a href="#demo">Demo</a>' : ''}<a href="#customers">Customers</a><a href="#business">Business</a><a href="#competition">Competition</a><a href="#privacy">Privacy</a><a href="#team">Team</a></nav>
 
   ${P.problem}
 
@@ -56,7 +57,7 @@ export function storySections() {
   <section id="how" class="dark-band how" data-slide="How it works">
     <canvas class="fireflies-bg" aria-hidden="true"></canvas>
     <div class="page-width">
-      ${head('02', 'HOW IT WORKS', 'Move through the room.<br><em>Watch the signal.</em>', 'This is a live simulation of what our three sensors see. Move your cursor through the room: your body bends the Wi-Fi lines. Click to fall.')}
+      ${head('02', 'HOW IT WORKS', 'Move through the room.<br><em>Watch the signal.</em>', 'An interactive illustration of the idea (not live sensor data). Move your cursor through the room: your body bends the Wi-Fi lines. Click to fall.')}
       <div class="how-grid">
         <div class="room-demo signal-target"><canvas class="room-canvas" aria-label="Interactive simulation: three sensors in a room; moving the cursor disturbs the Wi-Fi links, clicking simulates a fall."></canvas>
           <div class="room-hud"><span class="room-badge">SIMULATION</span><span class="room-state">Move your cursor into the room</span></div>
@@ -84,20 +85,20 @@ export function storySections() {
         <div class="hot"><b>Alert</b><span>room · time · stillness</span></div>
       </div>
       <div class="big-stats">
-        <div class="reveal-item"><b data-count="96" data-suffix="%">0%</b><span>moving vs still, on test trials the model never saw</span></div>
-        <div class="reveal-item"><b data-count="3">0</b><span>live sensing paths between our three boards, no router needed</span></div>
-        <div class="reveal-item"><b data-count="30" data-prefix="~">0</b><span>Wi-Fi readings per second per link</span></div>
-        <div class="reveal-item"><b data-count="0" data-final="0">0</b><span>images captured, ever</span></div>
+        <div class="reveal-item"><b data-count="96" data-suffix="%">0%</b><span>moving vs still on held-out trials (1 room, 1 person)</span></div>
+        <div class="reveal-item"><b data-count="60" data-prefix="~" data-suffix="%">0%</b><span>empty room vs still person. Why the memory layer exists</span></div>
+        <div class="reveal-item"><b class="word-stat">In test</b><span>fall detection: not yet validated, so the alert is off by default</span></div>
+        <div class="reveal-item"><b data-count="0">0</b><span>cameras in the room once the model is trained</span></div>
       </div>
       <p class="fine-print">96%: our own recording on our boards, Nov 14, 2026. One room, one person, leave-one-trial-out (logistic regression and random forest, 96–98%). Telling an empty room from a still person is harder (~60%), which is why the memory layer exists. Fall detection accuracy is still being measured, and the fall alert stays off by default until it is.</p>
     </div>
   </section>
   ${meadow('to-light')}
 
-  <section id="demo" class="info-section page-width" data-slide="Demo">
-    ${head('04', 'DEMO', 'See it in a <em>real room</em>.', 'Three small Wi-Fi sensors in a normal room. A person walks in, falls, and doesn’t get up. Haven sees a sudden change in the signal, then stillness, and the caregiver’s phone gets the alert.')}
+  ${DEMO_VIDEO ? `  <section id="demo" class="info-section page-width" data-slide="Demo">
+    ${head('04', 'DEMO', 'See it in a <em>real room</em>.', 'Three small Wi-Fi sensors in a normal room. A person walks in, falls, and doesn’t get up. Haven is built to see the sudden change in the signal, then the stillness, and send the caregiver’s phone an alert.')}
     ${video()}
-  </section>
+  </section>` : ''}
   ${P.live}
 
   <section id="customers" class="info-section page-width" data-slide="Customers">
@@ -108,17 +109,17 @@ export function storySections() {
       <div class="stat reveal-item"><b data-count="36" data-suffix="%">0</b><span>of nursing home liability claims are falls, averaging ~$245K each</span></div>
     </div>
     <div class="card-grid four">
-      <article class="info-card reveal-item signal-target"><span class="card-kicker">Who buys</span><h3>Director of nursing</h3><p>Responsible for fall rates, and for the lawsuits that come with them.</p></article>
-      <article class="info-card reveal-item signal-target"><span class="card-kicker">Who uses it</span><h3>Caregivers</h3><p>Their phone gets the alert: which room, what time, and how long there has been no movement.</p></article>
+      <article class="info-card reveal-item signal-target"><span class="card-kicker">Who buys</span><h3>Director of nursing</h3><p>Responsible for fall rates, and for the lawsuits that come with them.</p>${tag('Our hypothesis', 'pending')}</article>
+      <article class="info-card reveal-item signal-target"><span class="card-kicker">Who uses it</span><h3>Caregivers</h3><p>Designed to alert their phone: which room, what time, and how long there has been no movement.</p></article>
       <article class="info-card reveal-item signal-target"><span class="card-kicker">Who it protects</span><h3>Residents</h3><p>Nothing to wear, charge, or remember to press, which matters for residents living with dementia.</p></article>
       <article class="info-card reveal-item signal-target"><span class="card-kicker">Who it reassures</span><h3>Families</h3><p>Peace of mind without a camera in a parent’s bedroom or bathroom.</p></article>
     </div>
     <p class="fine-print">Sources: one-year study of 528 Bavarian nursing homes (<a href="https://pubmed.ncbi.nlm.nih.gov/21816682/" target="_blank" rel="noopener">PubMed 21816682</a>); ECRI, “Managing Falls in Aging Services”; CNA Aging Services Claim Report via Skilled Nursing News (2022).</p>
-    <div class="quote-slot signal-target"><span class="eyebrow">WHAT WE’RE HEARING</span><p>Customer conversations are in progress. We will only quote real conversations here.</p>${tag('Coming soon', 'pending')}</div>
+    <div class="quote-slot signal-target"><span class="eyebrow">WHAT WE’RE HEARING</span><p>We are reaching out to Central Coast care facilities. Only real conversations will ever be quoted here.</p>${tag('Coming soon', 'pending')}</div>
   </section>
 
   <section id="business" class="info-section page-width" data-slide="Business">
-    ${head('06', 'BUSINESS', 'Nursing homes <em>pay per room</em>.', 'One simple monthly price per room, sensors included. Slide to see when it pays for itself.')}
+    ${head('06', 'BUSINESS', 'One price <em>per room</em>.', 'Our plan: a monthly price per room, sensors included. Slide to see how many average fall costs it must offset to pay for itself.')}
     <div class="roi signal-target">
       <div class="roi-controls">
         <label>Rooms in the facility <output class="roi-rooms">100</output></label>
@@ -129,10 +130,10 @@ export function storySections() {
       </div>
       <div class="roi-out">
         <div><span>Haven per year</span><b class="roi-cost">$24,000</b></div>
-        <div><span>Falls avoided to break even</span><b class="roi-falls">3.8</b></div>
+        <div><span>Average fall costs it must offset</span><b class="roi-falls">3.8</b></div>
         <div><span>Share of one average fall lawsuit</span><b class="roi-suit">10%</b></div>
         <div class="roi-bar" aria-hidden="true"><i></i></div>
-        <small>A typical 100-bed home reports 100–200 falls a year (ISHN). $6,306 per fall (ECRI); ~$245K per fall claim (CNA).</small>
+        <small>Faster help after a fall, not fewer falls. A typical 100-bed home reports 100–200 falls a year (ISHN). $6,306 per fall (ECRI); ~$245K per fall claim (CNA).</small>
       </div>
     </div>
     <div class="card-grid three">
@@ -161,16 +162,17 @@ export function storySections() {
       <article class="info-card reveal-item signal-target"><span class="card-kicker">No identity</span><h3>Rooms, not people</h3><p>Alerts show a room number, the time, and minutes without movement. No names, photos or health records.</p></article>
       <article class="info-card reveal-item signal-target"><span class="card-kicker">Training only</span><h3>Camera as teacher</h3><p>A webcam labels what’s happening only while we train the model. Then it’s removed.</p></article>
       <article class="info-card reveal-item signal-target"><span class="card-kicker">On site</span><h3>Local processing</h3><p>Signal analysis runs on the facility’s own equipment, so raw Wi-Fi data stays in the building.</p>${tag('Planned', 'pending')}</article>
-      <article class="info-card reveal-item signal-target"><span class="card-kicker">Security</span><h3>Treated as health data</h3><p>Encrypted and handled with HIPAA-level care.</p>${tag('Planned', 'pending')}</article>
+      <article class="info-card reveal-item signal-target"><span class="card-kicker">Security</span><h3>Treated as health data</h3><p>Planned: encryption in transit and at rest, treated as health data.</p>${tag('Planned', 'pending')}</article>
       <article class="info-card reveal-item signal-target"><span class="card-kicker">Honest claims</span><h3>An alerting aid</h3><p>Haven detects possible falls and alerts staff faster. It does not prevent falls or diagnose anything.</p></article>
     </div>
   </section>
 
   <section id="team" class="info-section page-width team" data-slide="Team">
-    ${head('09', 'TEAM', 'Built in a weekend at <em>Cal Poly</em>.', 'CPVC AI Hackathon, November 2026. Everything you see was built from Friday 5 PM.')}
+    ${head('09', 'TEAM', 'Built in a weekend at <em>Cal Poly</em>.', 'CPVC AI Hackathon, November 2026.')}
     <div class="team-grid">
       ${[['Jack Jensen', 'JJ'], ['Anthony Ouzounian', 'AO'], ['Luis Scheibe', 'LS']].map(([n, i]) => `<div class="person reveal-item signal-target"><span class="avatar">${i}</span><b>${n}</b></div>`).join('')}
     </div>
+    <div class="credits reveal-item"><b>How we built it, honestly</b><span>AI coding assistants: Claude Code (Anthropic) and OpenAI Codex helped write the firmware, model code and this website. The fall model is our own, trained on our own recordings. 3D: Three.js (MIT); device case modeled in Blender. Fonts: Fraunces and Inter (SIL OFL). Statistics are cited where they appear.</span></div>
     <div class="info-cta"><a class="button primary magnetic" href="/technology">Explore the Technology ${arrow}</a><span>Prototype. Not a medical device.</span></div>
   </section>
   ${P.next}

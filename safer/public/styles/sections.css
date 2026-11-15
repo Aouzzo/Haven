@@ -250,3 +250,19 @@ body.present .present-bar{display:block;position:fixed;z-index:120;left:0;right:
 .scene-caption.enter .caption-detail{animation:capIn 1s var(--ease) .2s both}
 @keyframes capIn{from{opacity:0;transform:translateY(18px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
 @media (prefers-reduced-motion:reduce){.scene-caption.enter *{animation:none !important}}
+
+/* review fixes */
+.fine-print{font-size:13px}
+.word-stat{font-size:clamp(44px,5vw,80px) !important;color:#f0c47a !important;font-style:italic;font-weight:350 !important}
+.credits{margin-top:30px;padding:22px 24px;border:1px solid var(--line);border-radius:18px;background:var(--paper);display:grid;gap:8px;max-width:900px}
+.credits b{font-family:var(--serif);font-weight:400;font-size:22px}
+.credits span{font-size:14px;line-height:1.6;color:#555a51}
+.live-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:40px}
+.live-steps div{padding:26px;border-radius:20px;background:var(--paper);border:1px solid var(--line);display:grid;gap:12px}
+.live-steps b{font-family:var(--serif);font-weight:300;font-size:56px;line-height:1;color:var(--amber)}
+.live-steps span{font-size:20px;line-height:1.4}
+body.present .story-after>*{order:20}
+body.present .slide-problem{order:1}body.present #demo{order:2}body.present .slide-live{order:3}body.present #ai{order:4}body.present #customers{order:5}body.present #business{order:6}body.present .slide-next{order:7}body.present .slide-thanks{order:8}body.present #how{order:9}body.present #device{order:10}body.present #competition{order:11}body.present #privacy{order:12}body.present #team{order:13}body.present .footer-scene{order:30}
+body.present .meadow:not(.footer-scene),body.present .quote-slot,body.present #business .card-grid,body.present #customers .fine-print{display:none}
+body.present .info-section{display:flex;flex-direction:column;justify-content:center}
+@media (max-width:760px){.live-steps{grid-template-columns:1fr}}

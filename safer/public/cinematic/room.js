@@ -127,7 +127,7 @@ export function mountRoom(section) {
 
     // status
     const secs = person.fallAt ? Math.max(0, Math.floor(t - person.fallAt - .7)) : 0;
-    stateEl.textContent = sudden ? 'Sudden change detected' : still ? `No movement · ${secs}s` : person.speed > .02 ? 'Movement detected · tracking' : 'Someone is here, quiet';
+    stateEl.textContent = sudden ? 'Sudden change detected' : still ? `No movement · ${secs}s` : person.speed > .02 ? 'Movement detected' : 'Someone is here, quiet';
     if (still && t - person.fallAt > 3) { alertEl.hidden = false; timerEl.textContent = `0:${String(secs).padStart(2, '0')}`; }
   }
 

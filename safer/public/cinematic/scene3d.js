@@ -866,7 +866,7 @@ export function createWorld(canvas, labelEls = []) {
     if (frameTimes.length > 90) {
       const avg = frameTimes.reduce((a, b) => a + b, 0) / frameTimes.length;
       frameTimes = [];
-      if (avg > .034 && quality > 0) { quality--; if (quality === 1) gtao.enabled = false; else bokeh.enabled = false; }
+      if (avg > .034 && quality > -1) { quality--; if (quality === 1) gtao.enabled = false; else if (quality === 0) bokeh.enabled = false; else { bloom.enabled = false; renderer.setPixelRatio(1); composer.setPixelRatio(1); resize(); } }
     }
 
     const plan = Math.max(between(p, .22, .3) * (1 - between(p, .4, .46)), between(p, .8, .85) * (1 - between(p, .93, .96)));

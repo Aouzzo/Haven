@@ -5,7 +5,7 @@ export const CHAPTERS = [
   { at: .31, until: .44, name: 'Sensing', kicker: '02 / THE WI-FI ALREADY THERE', title: 'Three small sensors.\nNo cameras. No wearables.', detail: 'ESP32 boards read how Wi-Fi signals bend around a body (CSI).' },
   { at: .54, until: .62, name: 'Daily life', kicker: '03 / ROOM 104', title: 'Life, as usual.', detail: 'Movement ripples the signal. No images, no audio, no names.' },
   { at: .72, until: .79, name: 'Possible fall', kicker: '04 / A POSSIBLE FALL', title: 'Someone falls\nand doesn’t get up.', detail: 'The AI spots the sudden change, then the stillness.' },
-  { at: .86, until: .92, name: 'Care team', kicker: '05 / THE CARE TEAM', title: 'Staff know right away.', detail: 'Room number, time, and how long there has been no movement.' },
+  { at: .86, until: .92, name: 'Care team', kicker: '05 / THE CARE TEAM', title: 'Staff can know right away.', detail: 'Room number, time, and how long there has been no movement.' },
   { at: 1, until: 1.01, name: 'Haven', kicker: '06 / HAVEN', title: 'Make it a <em>Haven</em>.', detail: '' }
 ];
 
