@@ -4,7 +4,7 @@ Read `ReadME.md` (project context and honesty rules) and `safer/README.md` (site
 
 ## Current state (2026-11-14)
 - Live pitch site = `safer/public/` (static, no build). Deployed by Vercel from `main` to https://haven-public-ten.vercel.app. Run locally: `python safer/serve.py`, then open http://127.0.0.1:4173.
-- Branch `feature/3d-hero` (not merged): replaced the AI-image hero with an interactive Three.js 3D scene and a scroll flight path into Room 104 that shows a simulated fall alert and caregiver dashboard. Added a Wi-Fi cursor effect on all pages.
+- 3D hero merged into `main` on 2026-11-14 (from branch `feature/3d-hero`) and live: replaced the AI-image hero with an interactive Three.js 3D scene and a scroll flight path into Room 104 that shows a simulated fall alert and caregiver dashboard. Added a Wi-Fi cursor effect on all pages.
 - Key files: `safer/public/cinematic/{story,scene3d,timeline,cursor}.js`, `safer/public/styles/world.css`, `safer/public/vendor/three.module.min.js`.
 
 ## Decisions
@@ -13,7 +13,7 @@ Read `ReadME.md` (project context and honesty rules) and `safer/README.md` (site
 - `exterior.png` and the resident sprite sheets were removed. `hallway-empty.png` is still used on `/technology` and `/login`.
 
 ## Next steps
-- Merge `feature/3d-hero` into `main` only after the team approves (merging deploys).
+- Do new website work on a feature branch; merge into `main` only after the team approves (merging deploys).
 - Possibly replace the hallway image on `/technology` and `/login` with 3D renders or real photos of the hardware.
 - Once the detector works, swap the simulated CSI trace for real recorded data, labeled REPLAY or LIVE.
 
