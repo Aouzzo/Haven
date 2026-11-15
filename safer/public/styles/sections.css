@@ -244,3 +244,4 @@ body.present .present-bar{display:block;position:fixed;z-index:120;left:0;right:
 @media (prefers-reduced-motion:reduce){.marquee div,.pipeline path,.play-mark{animation:none}.split .w>span,.reveal-item,.stat-row,.roi,.matrix,.team-grid,.info-head p{transform:none !important;opacity:1 !important;transition:none}}
 .roi .info-tag{justify-self:start;margin-top:4px}
 .slide.present-only{display:none}body.present .slide.present-only{display:grid}.m-row>span:nth-child(n+2):nth-child(-n+5){font-size:20px}
+.info-nav a{white-space:nowrap;flex:none}@media (max-width:760px){.info-nav{scrollbar-width:none}.info-nav::-webkit-scrollbar{display:none}.device{height:260vh}.device-stage{padding:80px 6% 30px;gap:10px}.device-steps li{padding:8px 0 8px 14px}.device-steps span{font-size:13px}.room-demo{aspect-ratio:1/1}}
