@@ -98,6 +98,7 @@ export function mountTimeline() {
       q('.caption-kicker').textContent = c.kicker;
       q('.caption-title').innerHTML = c.title.replace(/\n/g, '<br>');
       q('.caption-detail').textContent = c.detail;
+      caption.classList.remove('enter'); void caption.offsetWidth; caption.classList.add('enter');
       q('.scene-announcement').textContent = `Scene ${chapter + 1} of ${CHAPTERS.length}: ${c.title.replace(/<[^>]+>/g, '').replace('\n', ' ')} ${c.detail} Simulation.`;
       chapters.forEach((b, i) => i === chapter ? b.setAttribute('aria-current', 'step') : b.removeAttribute('aria-current'));
     }
