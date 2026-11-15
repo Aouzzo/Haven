@@ -22,19 +22,24 @@ function video() {
   return `<div class="video-frame"><video src="${DEMO_VIDEO}" controls playsinline preload="metadata"></video></div>`;
 }
 
+const pts = (...xs) => xs.map(x => `<span class="pt">${x}</span>`).join('');
 const competitors = [
   ['Cameras + AI', 'Various', 'Accurate in good light.', 'Nobody wants video in their bedroom or bathroom, and cameras struggle in the dark.'],
   ['Pendants and watches', 'Call buttons, smartwatches', 'Cheap and simple.', 'They get forgotten or taken off, and you still have to press the button.'],
-  ['Radar (mmWave)', 'Vayyar, Sensatec, Hikvision', 'Camera-free and already sold to care homes.', 'Around $199–250 per device plus $20–49 a month (third-party reviews of Vayyar Care).'],
-  ['Thermal sensors', 'Butlr', 'Camera-free, heat-based sensing.', 'A separate sensor per room; Haven reads the Wi-Fi signal instead.'],
-  ['Wi-Fi sensing', 'Cognitive Systems, Origin Wireless', 'Uses existing Wi-Fi to sense motion.', 'Haven focuses on fall alerts for care facilities: room, time, and minutes without movement.'],
+  ['Radar (mmWave)', 'Vayyar, Sensatec, Hikvision', 'Camera-free and already sold to care facilities.', 'Around $199–250 per device plus $20–49 a month (third-party reviews of Vayyar Care).'],
+  ['Thermal sensors', 'Butlr', 'Camera-free, heat-based sensing.', pts(
+    'Needs a clear view from the ceiling. By Butlr’s own guidance, furniture, bedding, heated surfaces and room temperature changes can throw it off. Wi-Fi passes through blankets and furniture and ignores heat.',
+    'Placement depends on ceiling height and airflow. Haven plugs into an outlet: no ladder, no ceiling work.')],
+  ['Wi-Fi motion sensing', 'Cognitive Systems (WiFi Motion)', 'Motion-sensing software for home routers, built for private residences.', pts(
+    'Plug and play: one sensor per room, on any standard Wi-Fi.',
+    'Built for safety at scale: fall alerts across a whole care facility, on one dashboard.')],
   ['Bed and chair mats', 'Various', 'Simple to install.', 'They detect leaving the bed, not a fall.']
 ];
 
 const aiSteps = [
   ['01 / SENSE', 'Wi-Fi readings', 'ESP32 sensors measure how the Wi-Fi signal reaching them changes (CSI); our demo room used three boards. Every half second, Haven sums up the last 1.5 seconds: the shape of the signal across subcarriers, how much it spreads, and how fast it changes.'],
   ['02 / TEACH', 'The camera labels', 'During training only, a webcam runs Google’s MediaPipe Pose in the browser. It finds the body’s joints and reads torso angle, hip movement and knee angle to name what the person is doing: empty, standing, walking, sitting, lying, or a fall. Only that one word leaves the browser.'],
-  ['03 / LEARN', 'Wi-Fi learns from it', 'Each Wi-Fi window is paired with the camera’s label. A machine-learning model (k-nearest neighbours on standardized signal features) learns which Wi-Fi patterns go with which activity, then is tested on recordings it never trained on.'],
+  ['03 / LEARN', 'Wi-Fi learns from it', 'Each Wi-Fi window is paired with the camera’s label. A machine-learning model (k-nearest neighbors on standardized signal features) learns which Wi-Fi patterns go with which activity, then is tested on recordings it never trained on.'],
   ['04 / DETECT', 'Camera removed', 'The webcam is unplugged. Haven now runs on Wi-Fi alone. A sudden change followed by lying still means a possible fall; if the person stays down, staff get the room, the time and how long there has been no movement.']
 ];
 
@@ -53,13 +58,23 @@ export function productSection() {
       <canvas role="img" aria-label="Exploded view of the sensor assembling: case, ESP32 board, USB cable, charger and lid with internal antenna"></canvas>
       <p class="assembly-caption" data-from="1" data-to="23"><span class="eyebrow">01 / THE PARTS</span><strong>Five parts. One small device.</strong></p>
       <p class="assembly-caption" data-from="24" data-to="68"><span class="eyebrow">02 / THE BRAIN</span><strong>An ESP32 board reads the Wi-Fi signal.</strong></p>
-      <p class="assembly-caption" data-from="69" data-to="103"><span class="eyebrow">03 / POWER</span><strong>A short USB lead, tucked away.</strong></p>
+      <p class="assembly-caption" data-from="69" data-to="103"><span class="eyebrow">03 / POWER</span><strong>A short USB cable, tucked away.</strong></p>
       <p class="assembly-caption" data-from="104" data-to="158"><span class="eyebrow">04 / MOUNTING</span><strong>Slides onto a standard USB charger.</strong></p>
       <p class="assembly-caption" data-from="159" data-to="209"><span class="eyebrow">05 / SIGNAL</span><strong>The 2.4 GHz antenna lives in the lid.</strong></p>
       <p class="assembly-caption" data-from="210" data-to="240"><span class="eyebrow">06 / DONE</span><strong>Plug it into the wall. That’s it.</strong></p>
     </div>
   </section>
-  <section class="real-build page-width" aria-label="Photos of our real sensor"><div class="process-strip"><figure><img src="/assets/process/sensor-installed.jpg" alt="Our black sensor enclosure plugged into a wall outlet above the baseboard" loading="lazy"><figcaption>The real one, plugged into a wall outlet.</figcaption></figure><figure><img src="/assets/process/sensor-open.jpg" alt="Lid off: the ESP32 board with its antenna lead inside the enclosure" loading="lazy"><figcaption>Lid off: the ESP32 board and its antenna.</figcaption></figure><p class="process-note"><span class="eyebrow">FROM OUR BUILD</span>Built and tested at the hackathon. One per room, powered from a normal outlet.</p></div></section>`;
+  <section class="real-build page-width" aria-label="Photos of our real sensor"><div class="process-strip"><figure><img src="/assets/process/sensor-installed.jpg" alt="Our black sensor enclosure plugged into a wall outlet above the baseboard" loading="lazy"><figcaption>The real one, plugged into a wall outlet.</figcaption></figure><figure><img src="/assets/process/sensor-open.jpg" alt="Lid off: the ESP32 board with its antenna lead inside the enclosure" loading="lazy"><figcaption>Lid off: the ESP32 board and its antenna.</figcaption></figure><figure><img src="/assets/process/training-fall.jpg" alt="Training page: the pose model outlines a team member falling sideways onto a mat and labels it fall" loading="lazy"><figcaption>Training a fall: the pose model labels it from the webcam.</figcaption></figure><figure><img src="/assets/process/training-sitting.jpg" alt="Training page: camera label says sitting while the Wi-Fi-only model still says standing" loading="lazy"><figcaption>Mid-training: the camera says sitting, Wi-Fi is still learning.</figcaption></figure><p class="process-note"><span class="eyebrow">FROM OUR BUILD</span>Built and tested at the hackathon: the sensor, one per room on a normal outlet, and our webcam teacher page training it.</p></div>
+    <div class="hw-next">
+      <div class="hw-head"><span class="eyebrow">WHERE THE HARDWARE GOES NEXT</span><p>Today it’s a ~$20 board in a printed case. Next, a few-dollar chip inside a nightlight or smoke alarm that’s already in every room. Eventually, just software on the building’s Wi-Fi. <b>The price stays $20 a room. Our cost keeps dropping.</b></p></div>
+      <ol class="hw-steps">
+        <li><span>Today</span><b>Prototype</b><p>Dev board, USB charger and antenna in a printed case.</p><strong>~$20 / room</strong></li>
+        <li><span>Next</span><b>Custom plug-in</b><p>One small Wi-Fi chip, built-in power and antenna, molded case.</p><strong>~$5–8 / room</strong></li>
+        <li><span>Then</span><b>Already in the room</b><p>The chip rides inside a nightlight or smoke alarm every room already has.</p><strong>~$2–4 / room</strong></li>
+        <li><span>Eventually</span><b>Software only</b><p>Runs on the facility’s own Wi-Fi access points as the IEEE 802.11bf sensing standard rolls out.</p><strong>~$0 hardware</strong></li>
+      </ol>
+      <p class="fine-print">Hardware costs are rough estimates from component listings on Alibaba and AliExpress, not supplier quotes.</p>
+    </div></section>`;
 }
 
 export function storySections() {
@@ -103,7 +118,6 @@ export function storySections() {
     <div class="card-grid four">
       ${aiSteps.map(([k, h, p]) => `<article class="info-card signal-target"><span class="card-kicker">${k}</span><h3>${h}</h3><p>${p}</p></article>`).join('')}
     </div>
-    <div class="process-strip"><figure><img src="/assets/process/training-fall.jpg" alt="Training page: the pose model outlines a team member falling sideways onto a mat and labels it fall" loading="lazy"><figcaption>Training a fall: the pose model labels it from the webcam.</figcaption></figure><figure><img src="/assets/process/training-sitting.jpg" alt="Training page: camera label says sitting while the Wi-Fi-only model still says standing" loading="lazy"><figcaption>Mid-training: the camera says sitting, Wi-Fi is still learning.</figcaption></figure><p class="process-note"><span class="eyebrow">FROM OUR BUILD</span>Our webcam teacher page during guided recording: the camera’s label and the Wi-Fi model’s guess side by side.</p></div>
     <div class="why-now"><span class="eyebrow">WHY IT’S A NEW USE OF AI</span><div class="why-grid"><div><b>No hand-labeling</b><span>A pose model labels every half second of Wi-Fi data automatically. Teaching a room takes a few minutes of guided movement instead of hours of tagging.</span></div><div><b>One AI teaches another</b><span>A vision model trains a Wi-Fi model. Haven gets what a camera can tell, with no camera in the room.</span></div><div><b>It breaks without AI</b><span>No human or simple rule can read CSI as “sitting” or “fell.” Without the model, there is no product.</span></div></div></div>
     <div class="why-now built"><span class="eyebrow">HOW WE BUILT IT WITH AI</span>
       <div class="demand-grid">
@@ -140,10 +154,10 @@ export function storySections() {
   <section id="competition" class="info-section page-width reveal-on-scroll">
     <div class="info-head"><span class="eyebrow">05 / COMPETITION</span><h2>How Haven<br><em>compares</em>.</h2><p>Every alternative breaks somewhere. Haven adds one small plug-in sensor per room on the building’s own Wi-Fi, with nothing to wear and nothing to remember.</p></div>
     <div class="compare-table" role="table" aria-label="Competitor comparison">
-      <div class="compare-row compare-header" role="row"><span role="columnheader">Approach</span><span role="columnheader">Examples</span><span role="columnheader">Strength</span><span role="columnheader">Where Haven fits</span></div>
+      <div class="compare-row compare-header" role="row"><span role="columnheader">Approach</span><span role="columnheader">Examples</span><span role="columnheader">Strength</span><span role="columnheader">Where Haven does better</span></div>
       ${competitors.map(([a, e, s, h]) => `<div class="compare-row signal-target" role="row"><b role="cell">${a}</b><span role="cell">${e}</span><span role="cell">${s}</span><span role="cell">${h}</span></div>`).join('')}
     </div>
-    <div class="honest-note"><b>Our honest weakness:</b> Wi-Fi sensing has far fewer real-world deployments than radar, and each room needs its own short training session. Next: alerts to staff phones and nurse-call systems, and a pilot in a real facility with logged true and false alerts.</div>
+    <p class="fine-print">Sources: Butlr, <a href="https://www.butlr.com/articles/how-ambient-thermal-sensing-enables-fall-reduction-in-senior-living-b1096089" target="_blank" rel="noopener">“What is ambient thermal sensing?”</a>; Cognitive Systems via <a href="https://www.lightwaveonline.com/broadband/article/55031708/cognitive-systems-brings-motion-sensing-to-broadcoms-wi-fi-6-6e-access-points" target="_blank" rel="noopener">Lightwave</a> and <a href="https://wballiance.com/what-does-it-take-for-accurate-reliable-wi-fi-sensing/" target="_blank" rel="noopener">Wireless Broadband Alliance</a>. Competitor details are from public articles and vendor pages, not our own testing.</p>
   </section>
 
   <section id="privacy" class="info-section page-width reveal-on-scroll">
