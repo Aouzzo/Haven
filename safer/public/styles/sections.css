@@ -266,3 +266,34 @@ body.present .slide-problem{order:1}body.present #demo{order:2}body.present .sli
 body.present .meadow:not(.footer-scene),body.present .quote-slot,body.present #business .card-grid,body.present #customers .fine-print{display:none}
 body.present .info-section{display:flex;flex-direction:column;justify-content:center}
 @media (max-width:760px){.live-steps{grid-template-columns:1fr}}
+
+/* ---------- THEME: Clinical paper (branch theme/clinical) ---------- */
+:root{--ivory:#ffffff;--paper:#ffffff;--line:#dcdcd6;--serif:'Inter',-apple-system,'Segoe UI',sans-serif;--amber:#1f6f5c;--sage:#1f6f5c}
+body{background:#fff}
+.story-after{background:#fff}
+h1,h2,h3,.info-head h2,.slide h2,.device-copy h2{font-family:'Inter',sans-serif;font-weight:600;letter-spacing:-.045em}
+h2 em,h1 em{font-style:normal;font-weight:600;color:#1f6f5c}
+.info-head{border-top:1px solid #111;padding-top:18px}
+.info-head h2{font-size:clamp(40px,5vw,72px)}
+.eyebrow i{border-radius:0;border:0;padding:0;font-family:'Inter',sans-serif;font-weight:700}
+.eyebrow i::after{content:' —'}
+.info-card,.person,.credits,.why-now,.matrix,.roi,.room-demo,.video-frame,.live-steps div{border-radius:0 !important}
+.info-card{border:0;border-top:1px solid #111;background:transparent;padding:18px 0}
+.info-card::before,.roi::before,.person::before{display:none}
+.info-card:hover{box-shadow:none}
+.stat b,.big-stats b,.slide-stats b,.roi-out b,.roi output{font-family:'Inter',sans-serif;font-weight:300;letter-spacing:-.05em}
+.meadow:not(.footer-scene),.fireflies-bg,.marquee{display:none}
+.footer-scene{height:140px;background:#111}.footer-scene canvas{display:none}
+.dark-band{background:#f4f4f1;color:#111}
+.dark-band .info-head p,.dark-band .fine-print,.how-steps span,.big-stats span,.pipeline span,.link-meters div{color:#444}
+.dark-band h2 em{color:#1f6f5c}
+.big-stats b{color:#111}.big-stats div:first-child b{color:#1f6f5c}.big-stats{border-color:#111}
+.pipeline div{border-color:#bbb;background:#fff;border-radius:0}
+.pipeline path{stroke:#1f6f5c}
+.how-steps i{border-radius:0;border-color:#111;color:#111}
+.roi{background:#111}
+.m-haven{background:#1f6f5c !important}
+.info-nav{border-radius:0}.info-nav a{border-radius:0}.info-nav a.active{background:#111}
+.device-stage{background:#fff}
+.fine-print{font-size:12px;color:#555}
+.fine-print::before{content:'Note. ';font-weight:700}
