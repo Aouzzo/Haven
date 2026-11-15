@@ -32,3 +32,10 @@ Team asked for this to stay on a branch; merge it yourselves before noon if you 
 - Motion layer: `cinematic/fx.js` (word reveals, staggered reveals, count-ups, card spotlight/tilt, magnetic buttons, active pill nav, ROI calculator). Fonts self-hosted: Fraunces + Inter (`assets/fonts/`, SIL OFL).
 - **Presentation mode**: "Present" button in the header, the P key, or `/?present`. Next = → ↓ Space PageDown (clickers); back = ← ↑ PageUp; Home/End; F fullscreen; Esc exit. HUD shows slide n/N, slide name and a timer that turns coral after 4:00. Stops = the six 3D story chapters + every `[data-slide]` element. Present-only slides (mock-ups to edit) are in `safer/public/pages/present.js`; their order is set by `body.present ... { order: n }` rules at the end of `styles/sections.css`.
 - Review notes from a separate reviewer agent: `notes/overnight-review.md` (if present).
+- Presentation order is now an explicit list `ORDER` in `safer/public/cinematic/present.js` (10-stop pitch, then a Q&A appendix). Edit that list to change the deck.
+- Review fixes applied from `notes/overnight-review.md` (honesty wording, clicker focus, AI tools disclosure, Wi-Fi rivals in the matrix). Still needs real input from the team: real customer conversations (Customers section quote slot), a local demo video (`DEMO_VIDEO` in `cinematic/story.js`, prefer an mp4 in `assets/video/`), and confirming the three problem statistics against their sources.
+- Alternate looks to compare (each is the overnight branch plus a theme; merge only one):
+  - `theme/night-shift`: night 3D scene (stars, moonlight, brighter windows) and dark sections.
+  - `theme/signal`: cream sections with a live CSI waveform rail down the left edge that goes flat during the fall; no meadow.
+  To compare locally: `git checkout <branch>` then `python safer/serve.py` and open http://127.0.0.1:4173.
+
