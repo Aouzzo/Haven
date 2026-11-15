@@ -53,7 +53,7 @@ This is a simulated product story, not working fall detection. There is no senso
 
 - Implementation and visual direction: OpenAI Codex assistance.
 - 3D hero, scroll flight and Wi-Fi cursor: Claude Code (Anthropic) assistance.
-- 3D rendering: [Three.js](https://threejs.org) r160, MIT license.
+- 3D rendering: [Three.js](https://threejs.org) r160, MIT license (plus its post-processing passes, RoundedBoxGeometry and SimplexNoise addons in `public/vendor/addons/`).
 - Original scene and character imagery: built-in OpenAI image generation, guided by the user-supplied reference PNG. Generated using the account's included plan allowance; no paid API was invoked.
 - Brand icon, sensor graphics, layouts and scroll animation: original SVG/CSS/JavaScript in this project.
 - Runtime: Python standard library, browser HTML/CSS/JavaScript. No third-party frontend libraries, remote fonts, stock assets or paid services.
