@@ -110,7 +110,7 @@ export function mountTimeline() {
     current = reducedMotion.matches ? target : current + (target - current) * (1 - Math.exp(-dt / 110));
     if (Math.abs(target - current) < .00005) current = target;
     const t = time / 1000;
-    if (world) world.render(current, t);
+    if (world && scrollY < scroll.offsetHeight) world.render(current, t);   // skip the 3D scene once it's scrolled away
     overlays(current, t);
     requestAnimationFrame(frame);
   }
